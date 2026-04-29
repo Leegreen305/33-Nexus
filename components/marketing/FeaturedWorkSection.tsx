@@ -5,34 +5,25 @@ import { motion, useInView } from 'framer-motion'
 
 const WORKS = [
   {
-    title: 'CNSVCS.COM',
-    type: 'Live Product',
-    category: 'Web Platform · AI-Driven',
-    desc: 'A fully custom web platform for a professional services client. Complex AI architecture, premium design, enterprise-grade security and performance.',
-    tags: ['Next.js', 'AI Integration', 'Custom Architecture', 'Enterprise Security'],
-    accent: '#7DF9FF',
-    live: true,
-    url: 'https://cnsvcs.com',
+    n: '01', title: 'CNSVCS.COM', type: 'Live', year: '2024',
+    category: 'Web Platform · AI Architecture',
+    desc: 'Fully custom web platform for a professional services client. Complex AI architecture, premium design, enterprise-grade security.',
+    tags: ['Next.js', 'AI', 'Full-Stack'],
+    url: 'https://cnsvcs.com', live: true,
   },
   {
-    title: 'Enterprise AI Platform',
-    type: 'NDA Protected',
+    n: '02', title: 'Enterprise AI Platform', type: 'NDA', year: '2024',
     category: 'Custom AI Development',
-    desc: 'End-to-end AI automation platform with LLM orchestration, custom agent frameworks, and real-time data pipelines at enterprise scale.',
-    tags: ['AI Agents', 'LLMs', 'Automation', 'Pipeline'],
-    accent: '#BF5AF2',
-    live: false,
-    url: null,
+    desc: 'End-to-end AI automation platform with LLM orchestration, custom agent frameworks, and real-time data pipelines.',
+    tags: ['AI Agents', 'LLMs', 'Enterprise'],
+    url: null, live: false,
   },
   {
-    title: 'Security Operations Center',
-    type: 'NDA Protected',
+    n: '03', title: 'Security Operations Center', type: 'NDA', year: '2023',
     category: 'Cybersecurity',
-    desc: 'Full SOC buildout with custom threat detection, incident response workflows, and real-time security monitoring infrastructure.',
-    tags: ['SOC', 'Threat Detection', 'Incident Response'],
-    accent: '#7DF9FF',
-    live: false,
-    url: null,
+    desc: 'Full SOC buildout with custom threat detection, incident response workflows, and real-time monitoring infrastructure.',
+    tags: ['SOC', 'Threat Detection', 'Security'],
+    url: null, live: false,
   },
 ]
 
@@ -41,85 +32,73 @@ export function FeaturedWorkSection() {
   const isInView = useInView(ref, { once: true, margin: '-5%' })
 
   return (
-    <section id="work" ref={ref} style={{ padding: 'clamp(80px, 12vw, 160px) clamp(20px, 4vw, 60px)', maxWidth: '1300px', margin: '0 auto' }}>
+    <section id="work" ref={ref} style={{ padding: 'clamp(80px, 10vw, 140px) 40px', maxWidth: '1300px', margin: '0 auto' }}>
 
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={isInView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.6 }}
-        style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '60px', flexWrap: 'wrap', gap: '24px' }}
-      >
+      <motion.div initial={{ opacity: 0, y: 16 }} animate={isInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.6 }}
+        style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '64px', flexWrap: 'wrap', gap: '24px' }}>
         <div>
-          <div className="label" style={{ marginBottom: '16px' }}>— Selected work</div>
-          <h2 className="heading" style={{ fontSize: 'clamp(2rem, 5vw, 3.5rem)', color: '#fff' }}>
-            Built. Delivered.<br />
-            <span className="grad-text">Proven.</span>
+          <div className="label" style={{ marginBottom: '20px' }}>— Selected work</div>
+          <h2 className="display" style={{ fontSize: 'clamp(2.5rem, 6vw, 5.5rem)', color: 'var(--cream)' }}>
+            Built &<br />
+            <span style={{ color: 'var(--cream-30)', WebkitTextStroke: '1px rgba(242,237,229,0.25)', WebkitTextFillColor: 'transparent' }}>delivered.</span>
           </h2>
         </div>
-        <p style={{ fontFamily: 'DM Sans, sans-serif', fontSize: '0.9rem', color: 'rgba(255,255,255,0.3)', maxWidth: '280px', lineHeight: 1.7 }}>
-          Most work is under NDA. Contact us to discuss relevant case studies for your industry.
+        <p style={{ fontFamily: 'DM Sans, sans-serif', fontStyle: 'italic', fontSize: '0.9rem', color: 'var(--cream-30)', maxWidth: '260px', lineHeight: 1.7 }}>
+          Most work is under NDA. Contact us for relevant case studies.
         </p>
       </motion.div>
 
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+      {/* Work list */}
+      <div>
         {WORKS.map((w, i) => (
-          <motion.div
-            key={w.title}
-            initial={{ opacity: 0, y: 24 }}
+          <motion.div key={w.n}
+            initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5, delay: i * 0.1 }}
-            style={{
-              background: '#0D0D0D',
-              border: '1px solid rgba(255,255,255,0.06)',
-              borderRadius: '20px',
-              padding: 'clamp(28px, 4vw, 48px)',
-              cursor: 'none',
-              transition: 'border-color 0.25s, background 0.25s',
-              position: 'relative', overflow: 'hidden',
-            }}
-            onMouseEnter={e => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.1)'; e.currentTarget.style.background = '#111' }}
-            onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.06)'; e.currentTarget.style.background = '#0D0D0D' }}
+            style={{ borderTop: i === 0 ? '1px solid var(--border)' : 'none', borderBottom: '1px solid var(--border)' }}
           >
-            {/* Accent orb */}
-            <div style={{ position: 'absolute', top: 0, right: 0, width: '300px', height: '300px', background: `radial-gradient(circle at top right, ${w.accent}08, transparent 70%)`, pointerEvents: 'none' }} />
+            <div style={{ display: 'grid', gridTemplateColumns: '64px 1fr 1fr auto', gap: '32px', alignItems: 'center', padding: '40px 0', cursor: 'none', flexWrap: 'wrap' }}
+              className="work-row"
+              onMouseEnter={e => { const r = e.currentTarget; r.style.background = 'rgba(242,237,229,0.02)'; r.style.margin = '0 -24px'; r.style.padding = '40px 24px' }}
+              onMouseLeave={e => { const r = e.currentTarget; r.style.background = 'transparent'; r.style.margin = '0'; r.style.padding = '40px 0' }}>
 
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '32px', alignItems: 'center', position: 'relative', zIndex: 1 }}>
+              {/* Number */}
               <div>
-                {/* Status */}
-                <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', marginBottom: '16px' }}>
-                  {w.live && <div style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#7DF9FF', boxShadow: '0 0 8px #7DF9FF' }} />}
-                  <span className="tag" style={{ borderColor: `${w.accent}25`, color: w.accent, background: `${w.accent}08` }}>
-                    {w.type}
-                  </span>
-                </div>
-
-                {/* Title */}
-                <h3 style={{ fontFamily: 'Syne, sans-serif', fontWeight: 800, fontSize: 'clamp(1.4rem, 3vw, 2rem)', color: '#fff', letterSpacing: '-0.03em', lineHeight: 1.1, marginBottom: '6px' }}>
-                  {w.title}
-                </h3>
-                <div className="label" style={{ marginBottom: '20px' }}>{w.category}</div>
-
-                {/* Tags */}
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
-                  {w.tags.map(t => <span key={t} className="tag">{t}</span>)}
+                <div className="label">{w.n}</div>
+                <div style={{ marginTop: '8px', fontFamily: 'JetBrains Mono, monospace', fontSize: '0.58rem', color: w.live ? 'var(--lime)' : 'var(--cream-30)', border: `1px solid ${w.live ? 'rgba(191,255,0,0.3)' : 'var(--border)'}`, padding: '3px 7px', display: 'inline-block' }}>
+                  {w.type}
                 </div>
               </div>
 
+              {/* Title */}
               <div>
-                <p style={{ fontFamily: 'DM Sans, sans-serif', fontSize: '0.95rem', color: 'rgba(255,255,255,0.4)', lineHeight: 1.75, marginBottom: '24px' }}>
-                  {w.desc}
-                </p>
+                <div style={{ fontFamily: 'Syne, sans-serif', fontWeight: 800, fontSize: 'clamp(1.2rem, 2.5vw, 2rem)', color: 'var(--cream)', letterSpacing: '-0.03em', lineHeight: 1.1, marginBottom: '6px' }}>
+                  {w.title}
+                </div>
+                <div className="label">{w.category} · {w.year}</div>
+              </div>
 
+              {/* Desc + tags */}
+              <div style={{ display: 'none' }} className="md:block">
+                <p style={{ fontFamily: 'DM Sans, sans-serif', fontSize: '0.88rem', color: 'var(--cream-30)', lineHeight: 1.65, marginBottom: '12px' }}>{w.desc}</p>
+                <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap' }}>
+                  {w.tags.map(t => (
+                    <span key={t} style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.58rem', letterSpacing: '0.12em', color: 'var(--cream-30)', border: '1px solid var(--border)', padding: '3px 8px', textTransform: 'uppercase' }}>
+                      {t}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              {/* Arrow */}
+              <div>
                 {w.url ? (
                   <a href={w.url} target="_blank" rel="noopener noreferrer" style={{ cursor: 'none', textDecoration: 'none' }}>
-                    <button className="btn-ghost" style={{ padding: '10px 22px', fontSize: '0.82rem' }}>
-                      Visit Site ↗
-                    </button>
+                    <button className="btn btn-lime" style={{ padding: '10px 20px', fontSize: '0.78rem' }}>Visit ↗</button>
                   </a>
                 ) : (
-                  <button className="btn-ghost" style={{ padding: '10px 22px', fontSize: '0.82rem', opacity: 0.5 }}
-                    onClick={() => document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' })}>
-                    Request Case Study
+                  <button className="btn btn-outline" style={{ padding: '10px 20px', fontSize: '0.78rem' }} onClick={() => document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' })}>
+                    Case Study →
                   </button>
                 )}
               </div>

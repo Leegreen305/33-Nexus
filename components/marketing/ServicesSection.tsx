@@ -1,139 +1,125 @@
 'use client'
 
-import { useRef } from 'react'
-import { motion, useInView } from 'framer-motion'
+import { useRef, useState } from 'react'
+import { motion, useInView, AnimatePresence } from 'framer-motion'
 
 const SERVICES = [
-  { id: '01', title: 'Software Development', desc: 'Custom software architecture built for scale, performance, and longevity. Enterprise systems to lean SaaS.', span: 'col-span-12 md:col-span-5', tall: false, accent: '#7DF9FF' },
-  { id: '02', title: 'Web Development', desc: 'Premium web experiences that convert. Every pixel intentional, every interaction purposeful.', span: 'col-span-12 md:col-span-7', tall: false, accent: '#BF5AF2' },
-  { id: '03', title: 'AI Software Development', desc: 'Intelligent systems powered by large language models, custom ML pipelines, and proprietary architectures.', span: 'col-span-12 md:col-span-7', tall: false, accent: '#7DF9FF' },
-  { id: '04', title: 'Mobile Apps', desc: 'Native and cross-platform applications — the performance of native code with unified efficiency.', span: 'col-span-12 md:col-span-5', tall: false, accent: '#BF5AF2' },
-  { id: '05', title: 'AI Voice Agents', desc: 'Conversational AI that handles calls, qualifies leads, books appointments — at machine scale.', span: 'col-span-12 md:col-span-4', tall: false, accent: '#7DF9FF' },
-  { id: '06', title: 'AI Automation', desc: 'End-to-end workflow automation. Eliminate overhead, scale without headcount.', span: 'col-span-12 md:col-span-4', tall: false, accent: '#BF5AF2' },
-  { id: '07', title: 'Custom AI Agents', desc: 'Bespoke agents trained on your data, integrated into your stack, operating autonomously.', span: 'col-span-12 md:col-span-4', tall: false, accent: '#7DF9FF' },
-  { id: '08', title: 'Cybersecurity', desc: 'Enterprise-grade security assessment, penetration testing, SOC operations, and threat intelligence.', span: 'col-span-12', tall: false, accent: '#BF5AF2', wide: true },
+  { n: '01', title: 'Software Development', tags: ['Enterprise', 'SaaS', 'API'], desc: 'Custom software architecture built for scale, performance, and longevity.' },
+  { n: '02', title: 'Web Development', tags: ['Next.js', 'React', 'Headless'], desc: 'Premium web experiences engineered to convert. Every pixel, every millisecond.' },
+  { n: '03', title: 'AI Software Development', tags: ['LLMs', 'ML Pipelines', 'Custom AI'], desc: 'Intelligent systems powered by large language models and proprietary architectures.' },
+  { n: '04', title: 'Mobile App Development', tags: ['iOS', 'Android', 'Cross-Platform'], desc: 'Native and cross-platform applications with zero performance compromise.' },
+  { n: '05', title: 'AI Voice Agents', tags: ['Conversational AI', 'NLP', 'Telephony'], desc: 'AI that handles calls, qualifies leads, and books appointments at machine scale.' },
+  { n: '06', title: 'AI Automation', tags: ['Workflows', 'RPA', 'Integration'], desc: 'End-to-end automation that eliminates overhead and scales without headcount.' },
+  { n: '07', title: 'Custom AI Agents', tags: ['Autonomous', 'Trained on Your Data', 'Integrated'], desc: 'Bespoke agents operating autonomously within your systems and data.' },
+  { n: '08', title: 'Cybersecurity Services', tags: ['Pentesting', 'SOC', 'Threat Intel'], desc: 'Enterprise-grade security across the full stack — assessment to operations.' },
 ]
 
-function ServiceCard({ svc, index, isInView }: { svc: typeof SERVICES[0]; index: number; isInView: boolean }) {
+function ServiceRow({ svc, index, isInView }: { svc: typeof SERVICES[0]; index: number; isInView: boolean }) {
+  const [hovered, setHovered] = useState(false)
+
   return (
     <motion.div
-      initial={{ opacity: 0, y: 24 }}
+      initial={{ opacity: 0, y: 12 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.5, delay: index * 0.07, ease: [0.16, 1, 0.3, 1] }}
-      className={`${svc.span} glow-border`}
+      transition={{ duration: 0.45, delay: index * 0.055, ease: [0.16, 1, 0.3, 1] }}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
       style={{
-        background: '#0D0D0D',
-        border: '1px solid rgba(255,255,255,0.06)',
-        borderRadius: '20px',
-        padding: svc.wide ? '40px 48px' : '36px',
+        display: 'grid',
+        gridTemplateColumns: '64px 1fr auto',
+        gap: '24px',
+        alignItems: 'center',
+        padding: '28px 0',
+        borderBottom: '1px solid rgba(242,237,229,0.08)',
         cursor: 'none',
-        position: 'relative',
-        overflow: 'hidden',
-        transition: 'border-color 0.25s ease, background 0.25s ease',
-        display: 'flex',
-        flexDirection: svc.wide ? 'row' : 'column',
-        alignItems: svc.wide ? 'center' : 'flex-start',
-        justifyContent: svc.wide ? 'space-between' : 'flex-start',
-        gap: svc.wide ? '40px' : '0',
-      }}
-      onMouseEnter={e => {
-        e.currentTarget.style.background = '#111'
-        e.currentTarget.style.borderColor = 'rgba(255,255,255,0.1)'
-      }}
-      onMouseLeave={e => {
-        e.currentTarget.style.background = '#0D0D0D'
-        e.currentTarget.style.borderColor = 'rgba(255,255,255,0.06)'
+        transition: 'background 0.2s',
+        margin: hovered ? '0 -24px' : '0',
+        padding: hovered ? '28px 24px' : '28px 0',
+        borderRadius: hovered ? '4px' : '0',
+        background: hovered ? 'rgba(242,237,229,0.02)' : 'transparent',
       }}
     >
-      {/* Subtle accent glow */}
-      <div style={{
-        position: 'absolute', top: '-60px', right: '-60px',
-        width: '200px', height: '200px',
-        borderRadius: '50%',
-        background: `radial-gradient(circle, ${svc.accent}10 0%, transparent 70%)`,
-        pointerEvents: 'none',
-      }} />
-
-      <div style={{ flex: svc.wide ? '0 1 auto' : 1 }}>
-        {/* Number */}
-        <div className="label" style={{ marginBottom: '20px', color: svc.accent, opacity: 0.7 }}>{svc.id}</div>
-
-        {/* Title */}
-        <h3 style={{
-          fontFamily: 'Syne, sans-serif', fontWeight: 700,
-          fontSize: svc.wide ? 'clamp(1.6rem, 2.5vw, 2.2rem)' : 'clamp(1.1rem, 2vw, 1.4rem)',
-          color: '#fff', letterSpacing: '-0.02em', lineHeight: 1.15,
-          marginBottom: '14px',
-        }}>
-          {svc.title}
-        </h3>
-
-        {!svc.wide && (
-          <p style={{ fontFamily: 'DM Sans, sans-serif', fontSize: '0.9rem', color: 'rgba(255,255,255,0.4)', lineHeight: 1.65 }}>
-            {svc.desc}
-          </p>
-        )}
+      {/* Number */}
+      <div className="label" style={{ color: hovered ? 'var(--lime)' : 'var(--cream-30)', transition: 'color 0.2s' }}>
+        {svc.n}
       </div>
 
-      {svc.wide && (
-        <div style={{ flex: '0 1 500px' }}>
-          <p style={{ fontFamily: 'DM Sans, sans-serif', fontSize: '1rem', color: 'rgba(255,255,255,0.45)', lineHeight: 1.7, marginBottom: '24px' }}>
-            {svc.desc}
-          </p>
-          <button className="btn-ghost" style={{ padding: '10px 24px', fontSize: '0.82rem' }}
-            onClick={() => document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' })}>
-            Discuss Your Project →
-          </button>
+      {/* Title + desc */}
+      <div>
+        <div style={{ fontFamily: 'Syne, sans-serif', fontWeight: 700, fontSize: 'clamp(1.1rem, 2vw, 1.6rem)', color: 'var(--cream)', letterSpacing: '-0.02em', lineHeight: 1.15, marginBottom: '6px', transition: 'color 0.2s' }}>
+          {svc.title}
         </div>
-      )}
+        <AnimatePresence>
+          {hovered && (
+            <motion.p initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} exit={{ opacity: 0, height: 0 }}
+              style={{ fontFamily: 'DM Sans, sans-serif', fontSize: '0.88rem', color: 'var(--cream-60)', lineHeight: 1.6, overflow: 'hidden' }}>
+              {svc.desc}
+            </motion.p>
+          )}
+        </AnimatePresence>
+      </div>
 
-      {!svc.wide && (
-        <div style={{ marginTop: '24px', display: 'flex', alignItems: 'center', gap: '6px', color: 'rgba(255,255,255,0.25)' }}>
-          <span style={{ fontFamily: 'DM Sans, sans-serif', fontSize: '0.8rem' }}>Inquire</span>
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
+      {/* Tags */}
+      <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', justifyContent: 'flex-end' }}>
+        {svc.tags.map(tag => (
+          <span key={tag} style={{
+            fontFamily: 'JetBrains Mono, monospace', fontSize: '0.58rem', letterSpacing: '0.12em',
+            color: hovered ? 'var(--lime)' : 'var(--cream-30)', border: `1px solid ${hovered ? 'rgba(191,255,0,0.3)' : 'rgba(242,237,229,0.08)'}`,
+            padding: '4px 10px', textTransform: 'uppercase', transition: 'all 0.2s',
+          }}>
+            {tag}
+          </span>
+        ))}
+        <div style={{ display: 'flex', alignItems: 'center', opacity: hovered ? 1 : 0, transition: 'opacity 0.2s', marginLeft: '8px' }}>
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 10h12M10 4l6 6-6 6" stroke="var(--lime)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
         </div>
-      )}
+      </div>
     </motion.div>
   )
 }
 
 export function ServicesSection() {
   const ref = useRef<HTMLElement>(null)
-  const isInView = useInView(ref, { once: true, margin: '-8%' })
+  const isInView = useInView(ref, { once: true, margin: '-5%' })
 
   return (
-    <section id="services" ref={ref} style={{ padding: 'clamp(80px, 12vw, 160px) clamp(20px, 4vw, 60px)', maxWidth: '1300px', margin: '0 auto' }}>
+    <section id="services" ref={ref} style={{ padding: 'clamp(80px, 10vw, 140px) 40px', maxWidth: '1300px', margin: '0 auto' }}>
 
       {/* Header */}
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '60px', flexWrap: 'wrap', gap: '24px' }}>
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-        >
-          <div className="label" style={{ marginBottom: '16px' }}>— What we build</div>
-          <h2 className="heading" style={{ fontSize: 'clamp(2rem, 5vw, 3.5rem)', color: '#fff' }}>
+      <motion.div initial={{ opacity: 0, y: 16 }} animate={isInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.6 }}
+        style={{ display: 'grid', gridTemplateColumns: '1fr auto', alignItems: 'flex-end', marginBottom: '64px', gap: '40px', flexWrap: 'wrap' }}>
+        <div>
+          <div className="label" style={{ marginBottom: '20px' }}>— What we build</div>
+          <h2 className="display" style={{ fontSize: 'clamp(2.5rem, 6vw, 5.5rem)', color: 'var(--cream)' }}>
             Eight disciplines.<br />
-            <span className="grad-text">One team.</span>
+            <span style={{ color: 'var(--lime)' }}>One team.</span>
           </h2>
-        </motion.div>
+        </div>
+        <div style={{ textAlign: 'right' }}>
+          <div className="label" style={{ marginBottom: '12px' }}>Investment</div>
+          <div style={{ fontFamily: 'DM Sans, sans-serif', fontStyle: 'italic', fontSize: '0.9rem', color: 'var(--cream-30)', maxWidth: '220px' }}>
+            Discussed in consultation.<br />Never published online.
+          </div>
+        </div>
+      </motion.div>
 
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.1 }}
-          style={{ fontFamily: 'DM Sans, sans-serif', fontSize: '0.95rem', color: 'rgba(255,255,255,0.35)', maxWidth: '320px', lineHeight: 1.7 }}
-        >
-          Every engagement is custom-scoped. Investment is discussed during consultation — never published.
-        </motion.p>
-      </div>
-
-      {/* Bento grid */}
-      <div className="bento">
+      {/* Services index list */}
+      <div>
         {SERVICES.map((svc, i) => (
-          <ServiceCard key={svc.id} svc={svc} index={i} isInView={isInView} />
+          <ServiceRow key={svc.n} svc={svc} index={i} isInView={isInView} />
         ))}
       </div>
+
+      {/* Footer note */}
+      <motion.div initial={{ opacity: 0 }} animate={isInView ? { opacity: 1 } : {}} transition={{ duration: 0.6, delay: 0.6 }}
+        style={{ marginTop: '48px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '20px' }}>
+        <p style={{ fontFamily: 'DM Sans, sans-serif', fontStyle: 'italic', fontSize: '0.88rem', color: 'var(--cream-30)' }}>
+          Every engagement is custom-scoped. No off-the-shelf solutions.
+        </p>
+        <button className="btn btn-lime" onClick={() => document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' })}>
+          Start a Conversation →
+        </button>
+      </motion.div>
     </section>
   )
 }

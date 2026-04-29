@@ -5,68 +5,42 @@ import { AnimatePresence } from 'framer-motion'
 import { Preloader } from '@/components/marketing/Preloader'
 import { Navigation } from '@/components/marketing/Navigation'
 import { HeroSection } from '@/components/marketing/HeroSection'
-import { AboutSection } from '@/components/marketing/AboutSection'
+import { MarqueeStrip } from '@/components/marketing/MarqueeStrip'
 import { ServicesSection } from '@/components/marketing/ServicesSection'
-import { ProcessSection } from '@/components/marketing/ProcessSection'
-import { PortalPreviewSection } from '@/components/marketing/PortalPreviewSection'
 import { FeaturedWorkSection } from '@/components/marketing/FeaturedWorkSection'
+import { ProcessSection } from '@/components/marketing/ProcessSection'
+import { AboutSection } from '@/components/marketing/AboutSection'
+import { PortalPreviewSection } from '@/components/marketing/PortalPreviewSection'
 import { ContactSection } from '@/components/marketing/ContactSection'
 import { Footer } from '@/components/marketing/Footer'
 
 export default function HomePage() {
-  const [preloaderDone, setPreloaderDone] = useState(false)
-  const [hasVisited, setHasVisited] = useState(false)
+  const [ready, setReady] = useState(false)
+  const [visited, setVisited] = useState(false)
 
   useEffect(() => {
-    const visited = sessionStorage.getItem('nexus-visited')
-    if (visited) {
-      setPreloaderDone(true)
-      setHasVisited(true)
-    } else {
-      sessionStorage.setItem('nexus-visited', 'true')
-    }
+    const v = sessionStorage.getItem('nx-v')
+    if (v) { setReady(true); setVisited(true) }
+    else sessionStorage.setItem('nx-v', '1')
   }, [])
-
-  const handlePreloaderComplete = () => {
-    setPreloaderDone(true)
-  }
 
   return (
     <>
       <AnimatePresence>
-        {!preloaderDone && !hasVisited && (
-          <Preloader onComplete={handlePreloaderComplete} />
-        )}
+        {!ready && !visited && <Preloader onComplete={() => setReady(true)} />}
       </AnimatePresence>
 
-      <main
-        className="bg-sacred bg-nexus-void"
-        style={{
-          opacity: preloaderDone || hasVisited ? 1 : 0,
-          transition: 'opacity 0.33s ease',
-        }}
-      >
+      <main style={{ opacity: ready || visited ? 1 : 0, transition: 'opacity 0.4s ease', background: 'var(--ink)' }}>
         <Navigation />
-
         <HeroSection />
-
-        {/* Section divider */}
-        <div className="section-divider" />
-
-        <AboutSection />
-
-        <div className="section-divider" />
-
+        <MarqueeStrip />
         <ServicesSection />
-
-        <ProcessSection />
-
-        <PortalPreviewSection />
-
+        <MarqueeStrip inverted />
         <FeaturedWorkSection />
-
+        <ProcessSection />
+        <AboutSection />
+        <PortalPreviewSection />
         <ContactSection />
-
         <Footer />
       </main>
     </>
