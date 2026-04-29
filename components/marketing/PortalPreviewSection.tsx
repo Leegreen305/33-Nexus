@@ -56,7 +56,7 @@ export function PortalPreviewSection() {
                 fontFamily: 'Bebas Neue, sans-serif',
                 fontSize: 'clamp(2.2rem, 5vw, 3.3rem)',
                 letterSpacing: '0.05em',
-                color: '#F5F0E8',
+                color: '#FFFFFF',
                 lineHeight: 1.1,
                 marginBottom: '1.5rem',
               }}
@@ -73,7 +73,7 @@ export function PortalPreviewSection() {
               style={{
                 fontFamily: 'DM Sans, sans-serif',
                 fontSize: '1.1rem',
-                color: '#6B6560',
+                color: '#555555',
                 lineHeight: 1.8,
                 marginBottom: '2rem',
               }}
@@ -114,7 +114,7 @@ export function PortalPreviewSection() {
                     style={{
                       fontFamily: 'DM Sans, sans-serif',
                       fontSize: '0.88rem',
-                      color: '#6B6560',
+                      color: '#555555',
                     }}
                   >
                     {feature}
@@ -167,8 +167,8 @@ export function PortalPreviewSection() {
           >
             <div
               style={{
-                background: '#0D0D0D',
-                border: '1px solid #1F1F1F',
+                background: '#080808',
+                border: '1px solid #1A1A1A',
                 borderRadius: '1.1rem',
                 overflow: 'hidden',
                 boxShadow: '0 32px 80px rgba(0,0,0,0.8)',
@@ -178,8 +178,8 @@ export function PortalPreviewSection() {
               <div
                 style={{
                   padding: '1rem 1.5rem',
-                  background: '#141414',
-                  borderBottom: '1px solid #1F1F1F',
+                  background: '#0C0C0C',
+                  borderBottom: '1px solid #1A1A1A',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'space-between',
@@ -194,7 +194,7 @@ export function PortalPreviewSection() {
                   style={{
                     fontFamily: 'JetBrains Mono, monospace',
                     fontSize: '0.55rem',
-                    color: '#6B6560',
+                    color: '#555555',
                     letterSpacing: '0.1em',
                   }}
                 >
@@ -208,8 +208,8 @@ export function PortalPreviewSection() {
                 <div
                   style={{
                     width: '160px',
-                    background: '#0D0D0D',
-                    borderRight: '1px solid #1F1F1F',
+                    background: '#080808',
+                    borderRight: '1px solid #1A1A1A',
                     padding: '1.5rem 1rem',
                     flexShrink: 0,
                   }}
@@ -219,7 +219,7 @@ export function PortalPreviewSection() {
                       fontFamily: 'Bebas Neue, sans-serif',
                       fontSize: '0.88rem',
                       letterSpacing: '0.1em',
-                      color: '#C9A84C',
+                      color: '#D4D4D4',
                       marginBottom: '1.5rem',
                     }}
                   >
@@ -231,10 +231,10 @@ export function PortalPreviewSection() {
                       style={{
                         fontFamily: 'DM Sans, sans-serif',
                         fontSize: '0.77rem',
-                        color: i === 0 ? '#C9A84C' : '#6B6560',
+                        color: i === 0 ? '#D4D4D4' : '#555555',
                         padding: '0.5rem 0.66rem',
                         borderRadius: '0.44rem',
-                        background: i === 0 ? 'rgba(201,168,76,0.08)' : 'transparent',
+                        background: i === 0 ? 'rgba(212,212,212,0.08)' : 'transparent',
                         marginBottom: '4px',
                       }}
                     >
@@ -249,7 +249,7 @@ export function PortalPreviewSection() {
                     style={{
                       fontFamily: 'JetBrains Mono, monospace',
                       fontSize: '0.55rem',
-                      color: '#6B6560',
+                      color: '#555555',
                       letterSpacing: '0.2em',
                       marginBottom: '8px',
                     }}
@@ -260,7 +260,7 @@ export function PortalPreviewSection() {
                     style={{
                       fontFamily: 'Bebas Neue, sans-serif',
                       fontSize: '1.32rem',
-                      color: '#F5F0E8',
+                      color: '#FFFFFF',
                       marginBottom: '1.5rem',
                     }}
                   >
@@ -290,13 +290,13 @@ export function PortalPreviewSection() {
                             borderRadius: '50%',
                             background:
                               phase.status === 'complete'
-                                ? '#C9A84C'
+                                ? '#D4D4D4'
                                 : phase.status === 'in-progress'
                                 ? '#00D4FF'
-                                : '#1F1F1F',
+                                : '#1A1A1A',
                             boxShadow:
                               phase.status === 'complete'
-                                ? '0 0 8px rgba(201,168,76,0.5)'
+                                ? '0 0 8px rgba(212,212,212,0.5)'
                                 : phase.status === 'in-progress'
                                 ? '0 0 8px rgba(0,212,255,0.5)'
                                 : 'none',
@@ -310,10 +310,10 @@ export function PortalPreviewSection() {
                             fontSize: '0.66rem',
                             color:
                               phase.status === 'complete'
-                                ? '#F5F0E8'
+                                ? '#FFFFFF'
                                 : phase.status === 'in-progress'
                                 ? '#00D4FF'
-                                : '#6B6560',
+                                : '#555555',
                           }}
                         >
                           {phase.name}
@@ -328,7 +328,7 @@ export function PortalPreviewSection() {
                           >
                             <polyline
                               points="2,5 4,7 8,3"
-                              stroke="#C9A84C"
+                              stroke="#D4D4D4"
                               strokeWidth="1.5"
                               strokeLinecap="round"
                             />

@@ -25,8 +25,8 @@ export function ScrollProgress() {
         style={{
           width,
           height: '2px',
-          background: 'linear-gradient(90deg, #C9A84C 0%, #E8C97A 33%, #C9A84C 66%, #8B6914 100%)',
-          boxShadow: '0 0 8px rgba(201,168,76,0.6)',
+          background: 'linear-gradient(90deg, #D4D4D4 0%, #F0F0F0 33%, #D4D4D4 66%, #7A7A7A 100%)',
+          boxShadow: '0 0 8px rgba(212,212,212,0.6)',
         }}
       />
       {/* Sacred 33 segment markers */}
@@ -36,7 +36,7 @@ export function ScrollProgress() {
             key={i}
             className="w-px h-full transition-opacity duration-330"
             style={{
-              background: 'rgba(201,168,76,0.2)',
+              background: 'rgba(212,212,212,0.2)',
               opacity: i < segments ? 1 : 0,
             }}
           />

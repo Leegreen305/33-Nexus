@@ -5,9 +5,9 @@ import { motion, useInView, useScroll, useTransform } from 'framer-motion'
 import { PROCESS_STEPS } from '@/lib/constants'
 
 const PHASE_COLORS = {
-  'I': { main: '#C9A84C', dim: 'rgba(201,168,76,0.3)', label: 'DISCOVERY' },
-  'II': { main: '#E8C97A', dim: 'rgba(232,201,122,0.3)', label: 'CONSTRUCTION' },
-  'III': { main: '#8B6914', dim: 'rgba(139,105,20,0.3)', label: 'DEPLOYMENT' },
+  'I': { main: '#D4D4D4', dim: 'rgba(212,212,212,0.3)', label: 'DISCOVERY' },
+  'II': { main: '#F0F0F0', dim: 'rgba(232,201,122,0.3)', label: 'CONSTRUCTION' },
+  'III': { main: '#7A7A7A', dim: 'rgba(139,105,20,0.3)', label: 'DEPLOYMENT' },
 }
 
 export function ProcessSection() {
@@ -29,7 +29,7 @@ export function ProcessSection() {
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            'radial-gradient(ellipse at 50% 50%, rgba(201,168,76,0.02) 0%, transparent 70%)',
+            'radial-gradient(ellipse at 50% 50%, rgba(212,212,212,0.02) 0%, transparent 70%)',
         }}
       />
 
@@ -44,7 +44,7 @@ export function ProcessSection() {
               fontFamily: 'JetBrains Mono, monospace',
               fontSize: '0.66rem',
               letterSpacing: '0.3em',
-              color: '#C9A84C',
+              color: '#D4D4D4',
               textTransform: 'uppercase',
               marginBottom: '1.5rem',
             }}
@@ -60,7 +60,7 @@ export function ProcessSection() {
               fontFamily: 'Bebas Neue, sans-serif',
               fontSize: 'clamp(2.2rem, 5vw, 3.3rem)',
               letterSpacing: '0.05em',
-              color: '#F5F0E8',
+              color: '#FFFFFF',
               marginBottom: '1rem',
             }}
           >
@@ -76,7 +76,7 @@ export function ProcessSection() {
               fontFamily: 'Cormorant Garamond, serif',
               fontSize: '1.32rem',
               fontStyle: 'italic',
-              color: '#6B6560',
+              color: '#555555',
               maxWidth: '500px',
               margin: '0 auto',
             }}
@@ -106,7 +106,7 @@ export function ProcessSection() {
                       fontFamily: 'Cormorant Garamond, serif',
                       fontSize: '3.3rem',
                       fontStyle: 'italic',
-                      color: 'rgba(201,168,76,0.1)',
+                      color: 'rgba(212,212,212,0.1)',
                       lineHeight: 1,
                     }}
                   >
@@ -130,7 +130,7 @@ export function ProcessSection() {
                         fontFamily: 'Bebas Neue, sans-serif',
                         fontSize: '1.65rem',
                         letterSpacing: '0.1em',
-                        color: '#F5F0E8',
+                        color: '#FFFFFF',
                       }}
                     >
                       {phaseColor.label}
@@ -160,8 +160,8 @@ export function ProcessSection() {
                       whileHover={{ y: -4 }}
                       onClick={() => setActiveStep(activeStep === step.number ? null : step.number)}
                       style={{
-                        background: activeStep === step.number ? 'rgba(201,168,76,0.05)' : '#0D0D0D',
-                        border: `1px solid ${activeStep === step.number ? phaseColor.main : '#1F1F1F'}`,
+                        background: activeStep === step.number ? 'rgba(212,212,212,0.05)' : '#080808',
+                        border: `1px solid ${activeStep === step.number ? phaseColor.main : '#1A1A1A'}`,
                         borderRadius: '1.1rem',
                         padding: '2rem',
                         cursor: 'none',
@@ -211,7 +211,7 @@ export function ProcessSection() {
                           fontFamily: 'Bebas Neue, sans-serif',
                           fontSize: '1.32rem',
                           letterSpacing: '0.08em',
-                          color: '#F5F0E8',
+                          color: '#FFFFFF',
                           marginBottom: '0.75rem',
                         }}
                       >
@@ -222,7 +222,7 @@ export function ProcessSection() {
                         style={{
                           fontFamily: 'DM Sans, sans-serif',
                           fontSize: '0.88rem',
-                          color: '#6B6560',
+                          color: '#555555',
                           lineHeight: 1.7,
                         }}
                       >
@@ -246,10 +246,10 @@ export function ProcessSection() {
                       }}
                     >
                       <div
-                        style={{ width: '1px', height: '33px', background: 'linear-gradient(to bottom, transparent, #C9A84C)' }}
+                        style={{ width: '1px', height: '33px', background: 'linear-gradient(to bottom, transparent, #D4D4D4)' }}
                       />
                       <svg width="12" height="8" viewBox="0 0 12 8" fill="none">
-                        <path d="M1 1L6 7L11 1" stroke="#C9A84C" strokeWidth="1.5" strokeLinecap="round" />
+                        <path d="M1 1L6 7L11 1" stroke="#D4D4D4" strokeWidth="1.5" strokeLinecap="round" />
                       </svg>
                     </motion.div>
                   </div>
@@ -272,8 +272,8 @@ export function ProcessSection() {
               alignItems: 'center',
               gap: '1.5rem',
               padding: '1.5rem 3rem',
-              background: '#0D0D0D',
-              border: '1px solid #1F1F1F',
+              background: '#080808',
+              border: '1px solid #1A1A1A',
               borderRadius: '1.1rem',
             }}
           >
@@ -282,7 +282,7 @@ export function ProcessSection() {
                 style={{
                   fontFamily: 'Bebas Neue, sans-serif',
                   fontSize: '3.3rem',
-                  color: '#C9A84C',
+                  color: '#D4D4D4',
                   lineHeight: 1,
                 }}
               >
@@ -292,7 +292,7 @@ export function ProcessSection() {
                 style={{
                   fontFamily: 'JetBrains Mono, monospace',
                   fontSize: '0.55rem',
-                  color: '#6B6560',
+                  color: '#555555',
                   letterSpacing: '0.2em',
                   textTransform: 'uppercase',
                 }}
@@ -300,13 +300,13 @@ export function ProcessSection() {
                 STEPS
               </div>
             </div>
-            <div style={{ width: '1px', height: '40px', background: '#1F1F1F' }} />
+            <div style={{ width: '1px', height: '40px', background: '#1A1A1A' }} />
             <div>
               <div
                 style={{
                   fontFamily: 'Bebas Neue, sans-serif',
                   fontSize: '3.3rem',
-                  color: '#C9A84C',
+                  color: '#D4D4D4',
                   lineHeight: 1,
                 }}
               >
@@ -316,7 +316,7 @@ export function ProcessSection() {
                 style={{
                   fontFamily: 'JetBrains Mono, monospace',
                   fontSize: '0.55rem',
-                  color: '#6B6560',
+                  color: '#555555',
                   letterSpacing: '0.2em',
                   textTransform: 'uppercase',
                 }}
@@ -324,13 +324,13 @@ export function ProcessSection() {
                 PHASES
               </div>
             </div>
-            <div style={{ width: '1px', height: '40px', background: '#1F1F1F' }} />
+            <div style={{ width: '1px', height: '40px', background: '#1A1A1A' }} />
             <div>
               <div
                 style={{
                   fontFamily: 'Bebas Neue, sans-serif',
                   fontSize: '3.3rem',
-                  color: '#C9A84C',
+                  color: '#D4D4D4',
                   lineHeight: 1,
                 }}
               >
@@ -340,7 +340,7 @@ export function ProcessSection() {
                 style={{
                   fontFamily: 'JetBrains Mono, monospace',
                   fontSize: '0.55rem',
-                  color: '#6B6560',
+                  color: '#555555',
                   letterSpacing: '0.2em',
                   textTransform: 'uppercase',
                 }}

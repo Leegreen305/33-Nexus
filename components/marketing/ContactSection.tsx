@@ -79,7 +79,7 @@ export function ContactSection() {
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            'radial-gradient(ellipse at 33% 50%, rgba(201,168,76,0.03) 0%, transparent 60%)',
+            'radial-gradient(ellipse at 33% 50%, rgba(212,212,212,0.03) 0%, transparent 60%)',
         }}
       />
 
@@ -94,7 +94,7 @@ export function ContactSection() {
               fontFamily: 'JetBrains Mono, monospace',
               fontSize: '0.66rem',
               letterSpacing: '0.3em',
-              color: '#C9A84C',
+              color: '#D4D4D4',
               textTransform: 'uppercase',
               marginBottom: '1.5rem',
             }}
@@ -110,7 +110,7 @@ export function ContactSection() {
               fontFamily: 'Bebas Neue, sans-serif',
               fontSize: 'clamp(2.2rem, 6vw, 3.3rem)',
               letterSpacing: '0.05em',
-              color: '#F5F0E8',
+              color: '#FFFFFF',
               marginBottom: '1rem',
             }}
           >
@@ -126,7 +126,7 @@ export function ContactSection() {
               fontFamily: 'Cormorant Garamond, serif',
               fontSize: '1.32rem',
               fontStyle: 'italic',
-              color: '#6B6560',
+              color: '#555555',
             }}
           >
             Every great structure begins with a single conversation.
@@ -143,8 +143,8 @@ export function ContactSection() {
                 width: '8px',
                 height: '8px',
                 borderRadius: '50%',
-                background: '#C9A84C',
-                boxShadow: '0 0 8px rgba(201,168,76,0.6)',
+                background: '#D4D4D4',
+                boxShadow: '0 0 8px rgba(212,212,212,0.6)',
                 animation: 'pulse-indicator 1.32s ease-in-out infinite',
               }}
             />
@@ -152,7 +152,7 @@ export function ContactSection() {
               style={{
                 fontFamily: 'JetBrains Mono, monospace',
                 fontSize: '0.66rem',
-                color: '#6B6560',
+                color: '#555555',
                 letterSpacing: '0.15em',
               }}
             >
@@ -180,7 +180,7 @@ export function ContactSection() {
                   position: 'absolute',
                   width: '300px',
                   height: '300px',
-                  background: 'radial-gradient(circle, rgba(201,168,76,0.4) 0%, transparent 70%)',
+                  background: 'radial-gradient(circle, rgba(212,212,212,0.4) 0%, transparent 70%)',
                   borderRadius: '50%',
                 }}
               />
@@ -189,19 +189,19 @@ export function ContactSection() {
                 style={{
                   width: '66px',
                   height: '66px',
-                  border: '2px solid #C9A84C',
+                  border: '2px solid #D4D4D4',
                   borderRadius: '50%',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
                   marginBottom: '2rem',
-                  boxShadow: '0 0 33px rgba(201,168,76,0.3)',
+                  boxShadow: '0 0 33px rgba(212,212,212,0.3)',
                 }}
               >
                 <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
                   <polyline
                     points="5,14 11,20 23,8"
-                    stroke="#C9A84C"
+                    stroke="#D4D4D4"
                     strokeWidth="2"
                     strokeLinecap="round"
                     strokeLinejoin="round"
@@ -214,7 +214,7 @@ export function ContactSection() {
                   fontFamily: 'Bebas Neue, sans-serif',
                   fontSize: '2.2rem',
                   letterSpacing: '0.1em',
-                  color: '#F5F0E8',
+                  color: '#FFFFFF',
                   marginBottom: '1rem',
                 }}
               >
@@ -224,7 +224,7 @@ export function ContactSection() {
                 style={{
                   fontFamily: 'DM Sans, sans-serif',
                   fontSize: '1rem',
-                  color: '#6B6560',
+                  color: '#555555',
                   lineHeight: 1.7,
                   maxWidth: '400px',
                 }}
@@ -241,8 +241,8 @@ export function ContactSection() {
               transition={{ duration: 0.99, delay: 0.3 }}
               onSubmit={handleSubmit}
               style={{
-                background: '#0D0D0D',
-                border: '1px solid #1F1F1F',
+                background: '#080808',
+                border: '1px solid #1A1A1A',
                 borderRadius: '1.1rem',
                 padding: 'clamp(2rem, 5vw, 4rem)',
               }}
@@ -255,7 +255,7 @@ export function ContactSection() {
                       fontFamily: 'JetBrains Mono, monospace',
                       fontSize: '0.55rem',
                       letterSpacing: '0.2em',
-                      color: '#6B6560',
+                      color: '#555555',
                       textTransform: 'uppercase',
                       display: 'block',
                     }}
@@ -279,7 +279,7 @@ export function ContactSection() {
                       fontFamily: 'JetBrains Mono, monospace',
                       fontSize: '0.55rem',
                       letterSpacing: '0.2em',
-                      color: '#6B6560',
+                      color: '#555555',
                       textTransform: 'uppercase',
                       display: 'block',
                     }}
@@ -302,7 +302,7 @@ export function ContactSection() {
                       fontFamily: 'JetBrains Mono, monospace',
                       fontSize: '0.55rem',
                       letterSpacing: '0.2em',
-                      color: '#6B6560',
+                      color: '#555555',
                       textTransform: 'uppercase',
                       display: 'block',
                     }}
@@ -314,7 +314,7 @@ export function ContactSection() {
                     className="nexus-input"
                     value={formData.service}
                     onChange={(e) => updateField('service', e.target.value)}
-                    style={{ background: '#141414' }}
+                    style={{ background: '#0C0C0C' }}
                   >
                     <option value="">Select a service</option>
                     {SERVICES.map((s) => (
@@ -333,7 +333,7 @@ export function ContactSection() {
                       fontFamily: 'JetBrains Mono, monospace',
                       fontSize: '0.55rem',
                       letterSpacing: '0.2em',
-                      color: '#6B6560',
+                      color: '#555555',
                       textTransform: 'uppercase',
                       display: 'block',
                     }}
@@ -344,7 +344,7 @@ export function ContactSection() {
                     className="nexus-input"
                     value={formData.budget}
                     onChange={(e) => updateField('budget', e.target.value)}
-                    style={{ background: '#141414' }}
+                    style={{ background: '#0C0C0C' }}
                   >
                     <option value="">Select a range</option>
                     {BUDGET_OPTIONS.map((b) => (
@@ -362,7 +362,7 @@ export function ContactSection() {
                       fontFamily: 'JetBrains Mono, monospace',
                       fontSize: '0.55rem',
                       letterSpacing: '0.2em',
-                      color: '#6B6560',
+                      color: '#555555',
                       textTransform: 'uppercase',
                       display: 'block',
                     }}
@@ -373,7 +373,7 @@ export function ContactSection() {
                     className="nexus-input"
                     value={formData.timeline}
                     onChange={(e) => updateField('timeline', e.target.value)}
-                    style={{ background: '#141414' }}
+                    style={{ background: '#0C0C0C' }}
                   >
                     <option value="">Select timeline</option>
                     {TIMELINE_OPTIONS.map((t) => (
@@ -391,7 +391,7 @@ export function ContactSection() {
                       fontFamily: 'JetBrains Mono, monospace',
                       fontSize: '0.55rem',
                       letterSpacing: '0.2em',
-                      color: '#6B6560',
+                      color: '#555555',
                       textTransform: 'uppercase',
                       display: 'block',
                     }}
@@ -415,21 +415,21 @@ export function ContactSection() {
                 className="flex items-center gap-3 mt-6 mb-8"
                 style={{
                   padding: '0.88rem 1.1rem',
-                  background: '#141414',
-                  border: '1px solid #1F1F1F',
+                  background: '#0C0C0C',
+                  border: '1px solid #1A1A1A',
                   borderRadius: '0.66rem',
                 }}
               >
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                  <circle cx="8" cy="8" r="7" stroke="#6B6560" strokeWidth="1" />
-                  <line x1="8" y1="6" x2="8" y2="10" stroke="#6B6560" strokeWidth="1.5" strokeLinecap="round" />
-                  <circle cx="8" cy="4.5" r="0.75" fill="#6B6560" />
+                  <circle cx="8" cy="8" r="7" stroke="#555555" strokeWidth="1" />
+                  <line x1="8" y1="6" x2="8" y2="10" stroke="#555555" strokeWidth="1.5" strokeLinecap="round" />
+                  <circle cx="8" cy="4.5" r="0.75" fill="#555555" />
                 </svg>
                 <span
                   style={{
                     fontFamily: 'DM Sans, sans-serif',
                     fontSize: '0.77rem',
-                    color: '#6B6560',
+                    color: '#555555',
                   }}
                 >
                   Investment is discussed during consultation — no pricing is published. Every engagement is scoped to your specific needs.

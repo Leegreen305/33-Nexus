@@ -42,40 +42,40 @@ export function Sidebar({ userName, userRole, projectName }: SidebarProps) {
         height: '100%',
         display: 'flex',
         flexDirection: 'column',
-        background: '#0D0D0D',
-        borderRight: '1px solid #1F1F1F',
+        background: '#080808',
+        borderRight: '1px solid #1A1A1A',
       }}
     >
       {/* Logo */}
-      <div style={{ padding: '1.5rem', borderBottom: '1px solid #1F1F1F' }}>
+      <div style={{ padding: '1.5rem', borderBottom: '1px solid #1A1A1A' }}>
         <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '10px', cursor: 'none', textDecoration: 'none' }}>
           <svg viewBox="0 0 32 32" fill="none" width="32" height="32">
             <polygon points="10,2 22,2 30,10 30,22 22,30 10,30 2,22 2,10" stroke="url(#sbGold)" strokeWidth="1.5" fill="none" />
-            <text x="16" y="20" textAnchor="middle" fill="#C9A84C" fontSize="8" fontFamily="Bebas Neue, sans-serif">33</text>
+            <text x="16" y="20" textAnchor="middle" fill="#D4D4D4" fontSize="8" fontFamily="Bebas Neue, sans-serif">33</text>
             <defs>
               <linearGradient id="sbGold" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#C9A84C" />
-                <stop offset="100%" stopColor="#8B6914" />
+                <stop offset="0%" stopColor="#D4D4D4" />
+                <stop offset="100%" stopColor="#7A7A7A" />
               </linearGradient>
             </defs>
           </svg>
           <div>
-            <div style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: '0.99rem', letterSpacing: '0.15em', color: '#C9A84C', lineHeight: 1 }}>33 NEXUS</div>
-            <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.44rem', letterSpacing: '0.2em', color: '#6B6560', lineHeight: 1, marginTop: '2px' }}>CLIENT PORTAL</div>
+            <div style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: '0.99rem', letterSpacing: '0.15em', color: '#D4D4D4', lineHeight: 1 }}>33 NEXUS</div>
+            <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.44rem', letterSpacing: '0.2em', color: '#555555', lineHeight: 1, marginTop: '2px' }}>CLIENT PORTAL</div>
           </div>
         </Link>
       </div>
 
       {/* User info */}
-      <div style={{ padding: '1rem 1.5rem', borderBottom: '1px solid #1F1F1F' }}>
-        <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.44rem', letterSpacing: '0.2em', color: '#6B6560', textTransform: 'uppercase', marginBottom: '4px' }}>
+      <div style={{ padding: '1rem 1.5rem', borderBottom: '1px solid #1A1A1A' }}>
+        <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.44rem', letterSpacing: '0.2em', color: '#555555', textTransform: 'uppercase', marginBottom: '4px' }}>
           Authenticated
         </div>
-        <div style={{ fontFamily: 'DM Sans, sans-serif', fontSize: '0.88rem', color: '#F5F0E8', marginBottom: '2px' }}>
+        <div style={{ fontFamily: 'DM Sans, sans-serif', fontSize: '0.88rem', color: '#FFFFFF', marginBottom: '2px' }}>
           {userName}
         </div>
         {projectName && (
-          <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.55rem', color: '#C9A84C', letterSpacing: '0.1em' }}>
+          <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.55rem', color: '#D4D4D4', letterSpacing: '0.1em' }}>
             {projectName}
           </div>
         )}
@@ -96,9 +96,9 @@ export function Sidebar({ userName, userRole, projectName }: SidebarProps) {
                 padding: '0.66rem 1.5rem',
                 margin: '2px 0.66rem',
                 borderRadius: '0.66rem',
-                background: isActive ? 'rgba(201,168,76,0.08)' : 'transparent',
-                border: isActive ? '1px solid rgba(201,168,76,0.15)' : '1px solid transparent',
-                color: isActive ? '#C9A84C' : '#6B6560',
+                background: isActive ? 'rgba(212,212,212,0.08)' : 'transparent',
+                border: isActive ? '1px solid rgba(212,212,212,0.15)' : '1px solid transparent',
+                color: isActive ? '#D4D4D4' : '#555555',
                 textDecoration: 'none',
                 transition: 'all 0.33s ease',
                 cursor: 'none',
@@ -106,15 +106,15 @@ export function Sidebar({ userName, userRole, projectName }: SidebarProps) {
               onMouseEnter={(e) => {
                 if (!isActive) {
                   const t = e.currentTarget
-                  t.style.background = 'rgba(201,168,76,0.04)'
-                  t.style.color = '#F5F0E8'
+                  t.style.background = 'rgba(212,212,212,0.04)'
+                  t.style.color = '#FFFFFF'
                 }
               }}
               onMouseLeave={(e) => {
                 if (!isActive) {
                   const t = e.currentTarget
                   t.style.background = 'transparent'
-                  t.style.color = '#6B6560'
+                  t.style.color = '#555555'
                 }
               }}
             >
@@ -128,7 +128,7 @@ export function Sidebar({ userName, userRole, projectName }: SidebarProps) {
 
         {userRole === 'ADMIN' && (
           <>
-            <div style={{ height: '1px', background: '#1F1F1F', margin: '0.75rem 1.5rem' }} />
+            <div style={{ height: '1px', background: '#1A1A1A', margin: '0.75rem 1.5rem' }} />
             <Link
               href="/portal/admin"
               style={{
@@ -152,7 +152,7 @@ export function Sidebar({ userName, userRole, projectName }: SidebarProps) {
       </nav>
 
       {/* Sign out */}
-      <div style={{ padding: '1rem', borderTop: '1px solid #1F1F1F' }}>
+      <div style={{ padding: '1rem', borderTop: '1px solid #1A1A1A' }}>
         <button
           onClick={() => signOut({ callbackUrl: '/' })}
           style={{
@@ -163,13 +163,13 @@ export function Sidebar({ userName, userRole, projectName }: SidebarProps) {
             padding: '0.66rem 1rem',
             background: 'none',
             border: 'none',
-            color: '#6B6560',
+            color: '#555555',
             cursor: 'none',
             borderRadius: '0.66rem',
             transition: 'all 0.33s ease',
           }}
           onMouseEnter={(e) => { const t = e.currentTarget; t.style.background = 'rgba(139,0,0,0.1)'; t.style.color = '#ff4444' }}
-          onMouseLeave={(e) => { const t = e.currentTarget; t.style.background = 'none'; t.style.color = '#6B6560' }}
+          onMouseLeave={(e) => { const t = e.currentTarget; t.style.background = 'none'; t.style.color = '#555555' }}
         >
           {ICONS['logout']}
           <span style={{ fontFamily: 'DM Sans, sans-serif', fontSize: '0.88rem' }}>Sign Out</span>
@@ -189,11 +189,11 @@ export function Sidebar({ userName, userRole, projectName }: SidebarProps) {
       <button
         onClick={() => setMobileOpen(!mobileOpen)}
         className="md:hidden fixed top-4 left-4 z-333 p-2 rounded-lg"
-        style={{ background: '#0D0D0D', border: '1px solid #1F1F1F', cursor: 'none' }}
+        style={{ background: '#080808', border: '1px solid #1A1A1A', cursor: 'none' }}
       >
         <div className="flex flex-col gap-[5px]">
           {[0, 1, 2].map((i) => (
-            <div key={i} style={{ width: '20px', height: '1.5px', background: '#C9A84C' }} />
+            <div key={i} style={{ width: '20px', height: '1.5px', background: '#D4D4D4' }} />
           ))}
         </div>
       </button>

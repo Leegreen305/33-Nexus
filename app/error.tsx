@@ -44,7 +44,7 @@ export default function Error({
           fontFamily: 'Bebas Neue, sans-serif',
           fontSize: 'clamp(2.2rem, 6vw, 3.3rem)',
           letterSpacing: '0.05em',
-          color: '#F5F0E8',
+          color: '#FFFFFF',
           marginBottom: '1rem',
         }}
       >
@@ -55,7 +55,7 @@ export default function Error({
         style={{
           fontFamily: 'DM Sans, sans-serif',
           fontSize: '0.99rem',
-          color: '#6B6560',
+          color: '#555555',
           marginBottom: '3rem',
           maxWidth: '400px',
           lineHeight: 1.7,
@@ -67,7 +67,7 @@ export default function Error({
       <button
         onClick={reset}
         style={{
-          background: 'linear-gradient(135deg, #C9A84C 0%, #E8C97A 33%, #C9A84C 66%, #8B6914 100%)',
+          background: 'linear-gradient(135deg, #D4D4D4 0%, #F0F0F0 33%, #D4D4D4 66%, #7A7A7A 100%)',
           color: '#080808',
           fontFamily: 'Bebas Neue, sans-serif',
           letterSpacing: '0.15em',

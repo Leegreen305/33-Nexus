@@ -117,7 +117,7 @@ export function HeroSection() {
             style={{
               width: '33px',
               height: '1px',
-              background: 'linear-gradient(90deg, transparent, #C9A84C)',
+              background: 'linear-gradient(90deg, transparent, #D4D4D4)',
             }}
           />
           <span
@@ -125,7 +125,7 @@ export function HeroSection() {
               fontFamily: 'JetBrains Mono, monospace',
               fontSize: '0.66rem',
               letterSpacing: '0.3em',
-              color: '#C9A84C',
+              color: '#D4D4D4',
               textTransform: 'uppercase',
             }}
           >
@@ -135,7 +135,7 @@ export function HeroSection() {
             style={{
               width: '33px',
               height: '1px',
-              background: 'linear-gradient(90deg, #C9A84C, transparent)',
+              background: 'linear-gradient(90deg, #D4D4D4, transparent)',
             }}
           />
         </motion.div>
@@ -150,7 +150,7 @@ export function HeroSection() {
             fontSize: 'clamp(3.3rem, 9vw, 9.9rem)',
             lineHeight: '0.95',
             letterSpacing: '-0.02em',
-            color: '#F5F0E8',
+            color: '#FFFFFF',
             marginBottom: '0.5rem',
           }}
         >
@@ -170,7 +170,7 @@ export function HeroSection() {
             fontFamily: 'Cormorant Garamond, serif',
             fontSize: 'clamp(1.1rem, 2vw, 1.65rem)',
             fontStyle: 'italic',
-            color: '#6B6560',
+            color: '#555555',
             marginTop: '1.5rem',
             maxWidth: '600px',
             lineHeight: 1.4,
@@ -187,7 +187,7 @@ export function HeroSection() {
           style={{
             fontFamily: 'DM Sans, sans-serif',
             fontSize: '0.88rem',
-            color: '#6B6560',
+            color: '#555555',
             maxWidth: '520px',
             lineHeight: 1.7,
             marginTop: '1rem',
@@ -234,7 +234,7 @@ export function HeroSection() {
               key={stat.label}
               className="flex flex-col items-center justify-center px-8 py-5"
               style={{
-                borderRight: i < STATS.length - 1 ? '1px solid #1F1F1F' : 'none',
+                borderRight: i < STATS.length - 1 ? '1px solid #1A1A1A' : 'none',
                 minWidth: '160px',
               }}
             >
@@ -242,7 +242,7 @@ export function HeroSection() {
                 style={{
                   fontFamily: 'Bebas Neue, sans-serif',
                   fontSize: '2.2rem',
-                  color: '#C9A84C',
+                  color: '#D4D4D4',
                   lineHeight: 1,
                   letterSpacing: '0.05em',
                 }}
@@ -253,7 +253,7 @@ export function HeroSection() {
                 style={{
                   fontFamily: 'DM Sans, sans-serif',
                   fontSize: '0.66rem',
-                  color: '#6B6560',
+                  color: '#555555',
                   letterSpacing: '0.15em',
                   textTransform: 'uppercase',
                   marginTop: '4px',
@@ -278,7 +278,7 @@ export function HeroSection() {
             fontFamily: 'JetBrains Mono, monospace',
             fontSize: '0.55rem',
             letterSpacing: '0.25em',
-            color: '#6B6560',
+            color: '#555555',
             textTransform: 'uppercase',
           }}
         >
@@ -290,7 +290,7 @@ export function HeroSection() {
           style={{
             width: '1px',
             height: '40px',
-            background: 'linear-gradient(to bottom, #C9A84C, transparent)',
+            background: 'linear-gradient(to bottom, #D4D4D4, transparent)',
           }}
         />
       </motion.div>

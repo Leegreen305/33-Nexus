@@ -60,14 +60,14 @@ export function Navigation() {
                 height="14"
                 stroke="url(#navGold)"
                 strokeWidth="1"
-                fill="rgba(201,168,76,0.08)"
+                fill="rgba(212,212,212,0.08)"
                 transform="rotate(33, 20, 20)"
               />
               <text
                 x="20"
                 y="24"
                 textAnchor="middle"
-                fill="#C9A84C"
+                fill="#D4D4D4"
                 fontSize="8"
                 fontFamily="Bebas Neue, sans-serif"
                 letterSpacing="0.5"
@@ -76,9 +76,9 @@ export function Navigation() {
               </text>
               <defs>
                 <linearGradient id="navGold" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor="#C9A84C" />
-                  <stop offset="50%" stopColor="#E8C97A" />
-                  <stop offset="100%" stopColor="#8B6914" />
+                  <stop offset="0%" stopColor="#D4D4D4" />
+                  <stop offset="50%" stopColor="#F0F0F0" />
+                  <stop offset="100%" stopColor="#7A7A7A" />
                 </linearGradient>
               </defs>
             </svg>
@@ -89,7 +89,7 @@ export function Navigation() {
                 fontFamily: 'Bebas Neue, sans-serif',
                 fontSize: '1.32rem',
                 letterSpacing: '0.15em',
-                color: '#C9A84C',
+                color: '#D4D4D4',
                 lineHeight: 1,
               }}
             >
@@ -100,7 +100,7 @@ export function Navigation() {
                 fontFamily: 'JetBrains Mono, monospace',
                 fontSize: '0.44rem',
                 letterSpacing: '0.25em',
-                color: '#6B6560',
+                color: '#555555',
                 textTransform: 'uppercase',
                 lineHeight: 1,
                 marginTop: '2px',
@@ -122,18 +122,18 @@ export function Navigation() {
                 fontFamily: 'DM Sans, sans-serif',
                 fontSize: '0.88rem',
                 letterSpacing: '0.08em',
-                color: '#6B6560',
+                color: '#555555',
                 background: 'none',
                 border: 'none',
                 cursor: 'none',
                 transition: 'color 0.33s ease',
               }}
               onMouseEnter={(e) => {
-                ;(e.target as HTMLElement).style.color = '#C9A84C'
+                ;(e.target as HTMLElement).style.color = '#D4D4D4'
                 ;(e.target as HTMLElement).style.letterSpacing = '0.12em'
               }}
               onMouseLeave={(e) => {
-                ;(e.target as HTMLElement).style.color = '#6B6560'
+                ;(e.target as HTMLElement).style.color = '#555555'
                 ;(e.target as HTMLElement).style.letterSpacing = '0.08em'
               }}
             >
@@ -193,7 +193,7 @@ export function Navigation() {
                   fontFamily: 'Bebas Neue, sans-serif',
                   fontSize: '1.32rem',
                   letterSpacing: '0.15em',
-                  color: '#C9A84C',
+                  color: '#D4D4D4',
                 }}
               >
                 33 NEXUS
@@ -203,8 +203,8 @@ export function Navigation() {
                 style={{ cursor: 'none', background: 'none', border: 'none' }}
               >
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                  <line x1="3" y1="3" x2="21" y2="21" stroke="#C9A84C" strokeWidth="1.5" />
-                  <line x1="21" y1="3" x2="3" y2="21" stroke="#C9A84C" strokeWidth="1.5" />
+                  <line x1="3" y1="3" x2="21" y2="21" stroke="#D4D4D4" strokeWidth="1.5" />
+                  <line x1="21" y1="3" x2="3" y2="21" stroke="#D4D4D4" strokeWidth="1.5" />
                 </svg>
               </button>
             </div>
@@ -222,14 +222,14 @@ export function Navigation() {
                     fontFamily: 'Bebas Neue, sans-serif',
                     fontSize: '2.2rem',
                     letterSpacing: '0.1em',
-                    color: '#6B6560',
+                    color: '#555555',
                     background: 'none',
                     border: 'none',
-                    borderBottom: '1px solid #1F1F1F',
+                    borderBottom: '1px solid #1A1A1A',
                     cursor: 'none',
                   }}
-                  onMouseEnter={(e) => ((e.target as HTMLElement).style.color = '#C9A84C')}
-                  onMouseLeave={(e) => ((e.target as HTMLElement).style.color = '#6B6560')}
+                  onMouseEnter={(e) => ((e.target as HTMLElement).style.color = '#D4D4D4')}
+                  onMouseLeave={(e) => ((e.target as HTMLElement).style.color = '#555555')}
                 >
                   {item.label}
                 </motion.button>
@@ -242,7 +242,7 @@ export function Navigation() {
                   fontFamily: 'JetBrains Mono, monospace',
                   fontSize: '0.66rem',
                   letterSpacing: '0.2em',
-                  color: '#6B6560',
+                  color: '#555555',
                   textAlign: 'center',
                 }}
               >

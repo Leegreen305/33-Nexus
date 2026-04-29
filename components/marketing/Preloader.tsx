@@ -61,7 +61,7 @@ export function Preloader({ onComplete }: PreloaderProps) {
               <svg viewBox="0 0 600 600" fill="none">
                 <polygon
                   points="300,50 550,450 50,450"
-                  stroke="#C9A84C"
+                  stroke="#D4D4D4"
                   strokeWidth="1"
                   fill="none"
                 />
@@ -70,14 +70,14 @@ export function Preloader({ onComplete }: PreloaderProps) {
                   y="150"
                   width="300"
                   height="300"
-                  stroke="#C9A84C"
+                  stroke="#D4D4D4"
                   strokeWidth="1"
                   fill="none"
                   transform="rotate(33, 300, 300)"
                 />
                 <polygon
                   points="300,120 470,210 470,390 300,480 130,390 130,210"
-                  stroke="#C9A84C"
+                  stroke="#D4D4D4"
                   strokeWidth="1"
                   fill="none"
                 />
@@ -109,10 +109,10 @@ export function Preloader({ onComplete }: PreloaderProps) {
                   />
                   <defs>
                     <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                      <stop offset="0%" stopColor="#C9A84C" />
-                      <stop offset="33%" stopColor="#E8C97A" />
-                      <stop offset="66%" stopColor="#C9A84C" />
-                      <stop offset="100%" stopColor="#8B6914" />
+                      <stop offset="0%" stopColor="#D4D4D4" />
+                      <stop offset="33%" stopColor="#F0F0F0" />
+                      <stop offset="66%" stopColor="#D4D4D4" />
+                      <stop offset="100%" stopColor="#7A7A7A" />
                     </linearGradient>
                   </defs>
                 </svg>
@@ -131,9 +131,9 @@ export function Preloader({ onComplete }: PreloaderProps) {
                 <svg viewBox="0 0 96 96" fill="none" className="w-full h-full">
                   <polygon
                     points="48,12 84,72 12,72"
-                    stroke="#C9A84C"
+                    stroke="#D4D4D4"
                     strokeWidth="1"
-                    fill="rgba(201,168,76,0.05)"
+                    fill="rgba(212,212,212,0.05)"
                   />
                 </svg>
               </motion.div>
@@ -147,7 +147,7 @@ export function Preloader({ onComplete }: PreloaderProps) {
               >
                 <span
                   className="font-heading text-nexus-gold text-xl"
-                  style={{ fontSize: '1.1rem', fontFamily: 'Bebas Neue, sans-serif', color: '#C9A84C' }}
+                  style={{ fontSize: '1.1rem', fontFamily: 'Bebas Neue, sans-serif', color: '#D4D4D4' }}
                 >
                   33
                 </span>
@@ -166,7 +166,7 @@ export function Preloader({ onComplete }: PreloaderProps) {
                   fontFamily: 'Bebas Neue, sans-serif',
                   fontSize: '2.2rem',
                   letterSpacing: '0.33em',
-                  color: '#C9A84C',
+                  color: '#D4D4D4',
                 }}
               >
                 33 NEXUS
@@ -176,7 +176,7 @@ export function Preloader({ onComplete }: PreloaderProps) {
                   fontFamily: 'Cormorant Garamond, serif',
                   fontSize: '0.66rem',
                   letterSpacing: '0.3em',
-                  color: '#6B6560',
+                  color: '#555555',
                   marginTop: '8px',
                   textTransform: 'uppercase',
                 }}
@@ -193,19 +193,19 @@ export function Preloader({ onComplete }: PreloaderProps) {
             >
               <div
                 className="font-mono text-nexus-muted text-xs"
-                style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.66rem', color: '#6B6560' }}
+                style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.66rem', color: '#555555' }}
               >
                 INITIALIZING
               </div>
               <div
                 className="font-heading text-nexus-gold"
-                style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: '1.1rem', color: '#C9A84C', minWidth: '2ch' }}
+                style={{ fontFamily: 'Bebas Neue, sans-serif', fontSize: '1.1rem', color: '#D4D4D4', minWidth: '2ch' }}
               >
                 {String(count).padStart(2, '0')}
               </div>
               <div
                 className="font-mono text-nexus-muted text-xs"
-                style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.66rem', color: '#6B6560' }}
+                style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.66rem', color: '#555555' }}
               >
                 / 33
               </div>
@@ -216,7 +216,7 @@ export function Preloader({ onComplete }: PreloaderProps) {
               style={{
                 width: '200px',
                 height: '2px',
-                background: '#1F1F1F',
+                background: '#1A1A1A',
                 borderRadius: '1px',
                 overflow: 'hidden',
               }}
@@ -226,8 +226,8 @@ export function Preloader({ onComplete }: PreloaderProps) {
                 transition={{ duration: 0.05 }}
                 style={{
                   height: '100%',
-                  background: 'linear-gradient(90deg, #C9A84C, #E8C97A)',
-                  boxShadow: '0 0 8px rgba(201,168,76,0.6)',
+                  background: 'linear-gradient(90deg, #D4D4D4, #F0F0F0)',
+                  boxShadow: '0 0 8px rgba(212,212,212,0.6)',
                 }}
               />
             </div>
@@ -245,7 +245,7 @@ export function Preloader({ onComplete }: PreloaderProps) {
                 style={{
                   width: '400px',
                   height: '400px',
-                  background: 'radial-gradient(circle, rgba(201,168,76,0.4) 0%, transparent 70%)',
+                  background: 'radial-gradient(circle, rgba(212,212,212,0.4) 0%, transparent 70%)',
                   borderRadius: '50%',
                 }}
               />

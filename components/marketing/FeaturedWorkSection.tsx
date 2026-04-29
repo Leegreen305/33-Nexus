@@ -56,7 +56,7 @@ export function FeaturedWorkSection() {
                 fontFamily: 'JetBrains Mono, monospace',
                 fontSize: '0.66rem',
                 letterSpacing: '0.3em',
-                color: '#C9A84C',
+                color: '#D4D4D4',
                 textTransform: 'uppercase',
                 marginBottom: '1rem',
               }}
@@ -72,7 +72,7 @@ export function FeaturedWorkSection() {
                 fontFamily: 'Bebas Neue, sans-serif',
                 fontSize: 'clamp(2.2rem, 5vw, 3.3rem)',
                 letterSpacing: '0.05em',
-                color: '#F5F0E8',
+                color: '#FFFFFF',
               }}
             >
               Built. Delivered.{' '}
@@ -88,7 +88,7 @@ export function FeaturedWorkSection() {
               fontFamily: 'Cormorant Garamond, serif',
               fontSize: '1.1rem',
               fontStyle: 'italic',
-              color: '#6B6560',
+              color: '#555555',
               maxWidth: '300px',
             }}
           >
@@ -103,10 +103,10 @@ export function FeaturedWorkSection() {
             initial={{ opacity: 0, y: 40 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.99, ease: [0.16, 1, 0.3, 1] }}
-            whileHover={{ borderColor: 'rgba(201,168,76,0.4)' }}
+            whileHover={{ borderColor: 'rgba(212,212,212,0.4)' }}
             style={{
-              background: '#0D0D0D',
-              border: '1px solid #1F1F1F',
+              background: '#080808',
+              border: '1px solid #1A1A1A',
               borderRadius: '1.1rem',
               padding: '3rem',
               transition: 'border-color 0.33s ease, box-shadow 0.33s ease',
@@ -114,7 +114,7 @@ export function FeaturedWorkSection() {
             }}
             onMouseEnter={(e) => {
               const t = e.currentTarget
-              t.style.boxShadow = '0 16px 66px rgba(0,0,0,0.8), 0 0 33px rgba(201,168,76,0.1)'
+              t.style.boxShadow = '0 16px 66px rgba(0,0,0,0.8), 0 0 33px rgba(212,212,212,0.1)'
             }}
             onMouseLeave={(e) => {
               const t = e.currentTarget
@@ -129,8 +129,8 @@ export function FeaturedWorkSection() {
                     alignItems: 'center',
                     gap: '8px',
                     padding: '4px 12px',
-                    background: 'rgba(201,168,76,0.1)',
-                    border: '1px solid rgba(201,168,76,0.2)',
+                    background: 'rgba(212,212,212,0.1)',
+                    border: '1px solid rgba(212,212,212,0.2)',
                     borderRadius: '99px',
                     marginBottom: '1.5rem',
                   }}
@@ -140,8 +140,8 @@ export function FeaturedWorkSection() {
                       width: '6px',
                       height: '6px',
                       borderRadius: '50%',
-                      background: '#C9A84C',
-                      boxShadow: '0 0 6px rgba(201,168,76,0.8)',
+                      background: '#D4D4D4',
+                      boxShadow: '0 0 6px rgba(212,212,212,0.8)',
                     }}
                   />
                   <span
@@ -149,7 +149,7 @@ export function FeaturedWorkSection() {
                       fontFamily: 'JetBrains Mono, monospace',
                       fontSize: '0.55rem',
                       letterSpacing: '0.2em',
-                      color: '#C9A84C',
+                      color: '#D4D4D4',
                       textTransform: 'uppercase',
                     }}
                   >
@@ -162,7 +162,7 @@ export function FeaturedWorkSection() {
                     fontFamily: 'Bebas Neue, sans-serif',
                     fontSize: '3.3rem',
                     letterSpacing: '0.05em',
-                    color: '#F5F0E8',
+                    color: '#FFFFFF',
                     lineHeight: 1,
                     marginBottom: '0.5rem',
                   }}
@@ -175,7 +175,7 @@ export function FeaturedWorkSection() {
                     fontFamily: 'JetBrains Mono, monospace',
                     fontSize: '0.66rem',
                     letterSpacing: '0.15em',
-                    color: '#C9A84C',
+                    color: '#D4D4D4',
                     textTransform: 'uppercase',
                     marginBottom: '1.5rem',
                   }}
@@ -187,7 +187,7 @@ export function FeaturedWorkSection() {
                   style={{
                     fontFamily: 'DM Sans, sans-serif',
                     fontSize: '1rem',
-                    color: '#6B6560',
+                    color: '#555555',
                     lineHeight: 1.8,
                     marginBottom: '1.5rem',
                   }}
@@ -205,10 +205,10 @@ export function FeaturedWorkSection() {
                         fontFamily: 'JetBrains Mono, monospace',
                         fontSize: '0.55rem',
                         letterSpacing: '0.1em',
-                        color: '#6B6560',
+                        color: '#555555',
                         padding: '4px 10px',
-                        background: '#141414',
-                        border: '1px solid #1F1F1F',
+                        background: '#0C0C0C',
+                        border: '1px solid #1A1A1A',
                         borderRadius: '99px',
                       }}
                     >
@@ -229,13 +229,13 @@ export function FeaturedWorkSection() {
                       fontFamily: 'Bebas Neue, sans-serif',
                       fontSize: '0.88rem',
                       letterSpacing: '0.15em',
-                      color: '#C9A84C',
+                      color: '#D4D4D4',
                     }}
                   >
                     VISIT SITE
                   </span>
                   <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                    <path d="M3 8H13M13 8L8 3M13 8L8 13" stroke="#C9A84C" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                    <path d="M3 8H13M13 8L8 3M13 8L8 13" stroke="#D4D4D4" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
                 </a>
               </div>
@@ -243,13 +243,13 @@ export function FeaturedWorkSection() {
               {/* Site preview placeholder */}
               <div
                 style={{
-                  background: '#141414',
+                  background: '#0C0C0C',
                   borderRadius: '0.66rem',
                   aspectRatio: '16/10',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  border: '1px solid #1F1F1F',
+                  border: '1px solid #1A1A1A',
                   overflow: 'hidden',
                   position: 'relative',
                 }}
@@ -258,7 +258,7 @@ export function FeaturedWorkSection() {
                   style={{
                     position: 'absolute',
                     inset: 0,
-                    background: 'radial-gradient(circle at 50% 40%, rgba(201,168,76,0.06) 0%, transparent 70%)',
+                    background: 'radial-gradient(circle at 50% 40%, rgba(212,212,212,0.06) 0%, transparent 70%)',
                   }}
                 />
                 <div className="text-center opacity-40">
@@ -266,7 +266,7 @@ export function FeaturedWorkSection() {
                     style={{
                       fontFamily: 'Bebas Neue, sans-serif',
                       fontSize: '2.2rem',
-                      color: '#C9A84C',
+                      color: '#D4D4D4',
                       letterSpacing: '0.1em',
                     }}
                   >
@@ -276,7 +276,7 @@ export function FeaturedWorkSection() {
                     style={{
                       fontFamily: 'JetBrains Mono, monospace',
                       fontSize: '0.55rem',
-                      color: '#6B6560',
+                      color: '#555555',
                       letterSpacing: '0.15em',
                     }}
                   >
@@ -296,8 +296,8 @@ export function FeaturedWorkSection() {
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.66, delay: 0.4 + i * 0.1 }}
                 style={{
-                  background: '#0D0D0D',
-                  border: '1px solid #1F1F1F',
+                  background: '#080808',
+                  border: '1px solid #1A1A1A',
                   borderRadius: '1.1rem',
                   padding: '2rem',
                   cursor: 'none',
@@ -330,7 +330,7 @@ export function FeaturedWorkSection() {
                     fontFamily: 'JetBrains Mono, monospace',
                     fontSize: '0.55rem',
                     letterSpacing: '0.2em',
-                    color: '#C9A84C',
+                    color: '#D4D4D4',
                     textTransform: 'uppercase',
                     marginBottom: '0.75rem',
                   }}
@@ -343,7 +343,7 @@ export function FeaturedWorkSection() {
                     fontFamily: 'Bebas Neue, sans-serif',
                     fontSize: '1.65rem',
                     letterSpacing: '0.08em',
-                    color: '#F5F0E8',
+                    color: '#FFFFFF',
                     marginBottom: '1rem',
                   }}
                 >
@@ -354,7 +354,7 @@ export function FeaturedWorkSection() {
                   style={{
                     fontFamily: 'DM Sans, sans-serif',
                     fontSize: '0.88rem',
-                    color: '#6B6560',
+                    color: '#555555',
                     lineHeight: 1.7,
                     marginBottom: '1.5rem',
                   }}
@@ -370,10 +370,10 @@ export function FeaturedWorkSection() {
                         fontFamily: 'JetBrains Mono, monospace',
                         fontSize: '0.55rem',
                         letterSpacing: '0.1em',
-                        color: '#6B6560',
+                        color: '#555555',
                         padding: '4px 10px',
-                        background: '#141414',
-                        border: '1px solid #1F1F1F',
+                        background: '#0C0C0C',
+                        border: '1px solid #1A1A1A',
                         borderRadius: '99px',
                       }}
                     >

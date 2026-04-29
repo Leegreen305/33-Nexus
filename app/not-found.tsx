@@ -10,7 +10,7 @@ export default function NotFound() {
         alignItems: 'center',
         justifyContent: 'center',
         background: '#080808',
-        backgroundImage: 'radial-gradient(ellipse at 33% 33%, rgba(201,168,76,0.03) 0%, transparent 70%)',
+        backgroundImage: 'radial-gradient(ellipse at 33% 33%, rgba(212,212,212,0.03) 0%, transparent 70%)',
         padding: '2rem',
         textAlign: 'center',
       }}
@@ -19,7 +19,7 @@ export default function NotFound() {
         style={{
           fontFamily: 'Bebas Neue, sans-serif',
           fontSize: 'clamp(6.6rem, 20vw, 9.9rem)',
-          color: 'rgba(201,168,76,0.08)',
+          color: 'rgba(212,212,212,0.08)',
           lineHeight: 1,
           letterSpacing: '-0.02em',
           position: 'absolute',
@@ -34,7 +34,7 @@ export default function NotFound() {
             fontFamily: 'JetBrains Mono, monospace',
             fontSize: '0.66rem',
             letterSpacing: '0.3em',
-            color: '#C9A84C',
+            color: '#D4D4D4',
             textTransform: 'uppercase',
             marginBottom: '1.5rem',
           }}
@@ -47,7 +47,7 @@ export default function NotFound() {
             fontFamily: 'Bebas Neue, sans-serif',
             fontSize: 'clamp(2.2rem, 6vw, 3.3rem)',
             letterSpacing: '0.05em',
-            color: '#F5F0E8',
+            color: '#FFFFFF',
             marginBottom: '1rem',
           }}
         >
@@ -59,7 +59,7 @@ export default function NotFound() {
             fontFamily: 'Cormorant Garamond, serif',
             fontSize: '1.32rem',
             fontStyle: 'italic',
-            color: '#6B6560',
+            color: '#555555',
             marginBottom: '3rem',
             maxWidth: '400px',
           }}
@@ -70,7 +70,7 @@ export default function NotFound() {
         <Link href="/">
           <button
             style={{
-              background: 'linear-gradient(135deg, #C9A84C 0%, #E8C97A 33%, #C9A84C 66%, #8B6914 100%)',
+              background: 'linear-gradient(135deg, #D4D4D4 0%, #F0F0F0 33%, #D4D4D4 66%, #7A7A7A 100%)',
               backgroundSize: '200% auto',
               color: '#080808',
               fontFamily: 'Bebas Neue, sans-serif',
