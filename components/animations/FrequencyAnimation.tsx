@@ -108,21 +108,21 @@ function BackdropV2({ accent, warm }: { accent: string; warm: string }) {
         )}
 
         {/* Bottom-left coordinates */}
-        <div style={{ position: 'absolute', left: '4%', bottom: '7%', color: `${warm}88`, fontFamily: 'JetBrains Mono, monospace', fontSize: 'clamp(7px, 1vw, 11px)', letterSpacing: '0.3em', lineHeight: 1.8 }}>
+        <div style={{ position: 'absolute', left: '4%', bottom: '4%', color: `${warm}44`, fontFamily: 'JetBrains Mono, monospace', fontSize: 'clamp(7px, 1vw, 11px)', letterSpacing: '0.3em', lineHeight: 1.8 }}>
           <div>LAT  +33°00'00.0"</div>
           <div>LON  −97°00'00.0"</div>
           <div>SYS  NEXUS//STABLE</div>
         </div>
 
         {/* Bottom-right metrics */}
-        <div style={{ position: 'absolute', right: '4%', bottom: '7%', color: `${warm}88`, fontFamily: 'JetBrains Mono, monospace', fontSize: 'clamp(7px, 1vw, 11px)', letterSpacing: '0.3em', textAlign: 'right', lineHeight: 1.8, fontVariantNumeric: 'tabular-nums' }}>
+        <div style={{ position: 'absolute', right: '4%', bottom: '4%', color: `${warm}44`, fontFamily: 'JetBrains Mono, monospace', fontSize: 'clamp(7px, 1vw, 11px)', letterSpacing: '0.3em', textAlign: 'right', lineHeight: 1.8, fontVariantNumeric: 'tabular-nums' }}>
           <div>FREQ  33.000 GHz</div>
           <div>PHASE  04 / 08</div>
           <div>SIG   −12.0 dB</div>
         </div>
 
         {/* 33-tick playhead rail — center bottom */}
-        <div style={{ position: 'absolute', left: '50%', bottom: '9%', transform: 'translateX(-50%)', display: 'flex', gap: 5, alignItems: 'flex-end' }}>
+        <div style={{ position: 'absolute', left: '50%', bottom: '5%', transform: 'translateX(-50%)', display: 'flex', gap: 5, alignItems: 'flex-end' }}>
           {Array.from({ length: 33 }).map((_, i) => {
             const isPlayhead = i === tickIdx
             const isMajor = i % 8 === 0
@@ -174,7 +174,7 @@ function PulseSpectrum({ accent, warm }: { accent: string; warm: string }) {
   if (overall < 0.01) return null
 
   return (
-    <div style={{ position: 'absolute', left: '50%', top: '50%', width: 0, height: 0, opacity: overall, pointerEvents: 'none' }}>
+    <div style={{ position: 'absolute', left: '50%', top: '38%', width: 0, height: 0, opacity: overall, pointerEvents: 'none' }}>
       {/* Center glow */}
       {pulseIn > 0.05 && (
         <div style={{ position: 'absolute', left: -200, top: -200, width: 400, height: 400, borderRadius: '50%', background: `radial-gradient(circle, ${accent}66 0%, transparent 60%)`, filter: 'blur(20px)', opacity: pulseIn * (1 - multiply * 0.6) * sphereOut, mixBlendMode: 'screen' }} />
@@ -267,13 +267,13 @@ function LatticeV2({ accent, warm }: { accent: string; warm: string }) {
   if (alpha < 0.01) return null
 
   const rings = [
-    { radius: 280, tilt: 70,  speed: 0.35,  count: 8,  glyphs: DISCIPLINES, dotted: false },
-    { radius: 360, tilt: 110, speed: -0.22, count: 16, glyphs: null,        dotted: true  },
-    { radius: 460, tilt: 55,  speed: 0.14,  count: 24, glyphs: null,        dotted: true  },
+    { radius: 200, tilt: 70,  speed: 0.35,  count: 8,  glyphs: DISCIPLINES, dotted: false },
+    { radius: 260, tilt: 110, speed: -0.22, count: 16, glyphs: null,        dotted: true  },
+    { radius: 320, tilt: 55,  speed: 0.14,  count: 24, glyphs: null,        dotted: true  },
   ]
 
   return (
-    <div style={{ position: 'absolute', left: '50%', top: '50%', width: 0, height: 0, opacity: alpha, pointerEvents: 'none' }}>
+    <div style={{ position: 'absolute', left: '50%', top: '38%', width: 0, height: 0, opacity: alpha, pointerEvents: 'none' }}>
       {rings.map((r, ri) => (
         <RingComponent key={ri} t={t} accent={accent} warm={warm} {...r} entryDelay={ri * 0.12} inP={inP} />
       ))}
@@ -339,14 +339,14 @@ function MarkV2({ accent, warm }: { accent: string; warm: string }) {
   if (inP < 0.01 || outP < 0.01) return null
 
   return (
-    <div style={{ position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%, -50%)', width: '80%', maxWidth: 1200, pointerEvents: 'none', opacity: outP, textAlign: 'center' }}>
+    <div style={{ position: 'absolute', left: '50%', top: '38%', transform: 'translate(-50%, -50%)', width: '80%', maxWidth: 1200, pointerEvents: 'none', opacity: outP, textAlign: 'center' }}>
       {/* Eyebrow */}
       <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: 'clamp(8px, 1.1vw, 12px)', letterSpacing: '0.55em', color: accent, opacity: eyebrow, marginBottom: 28, textIndent: '0.55em' }}>
         — THE 33RD DEGREE
       </div>
 
       {/* Slit "33" */}
-      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 28, height: 'clamp(120px, 20vw, 280px)', transform: `scale(${clamp(window?.innerWidth / 1400, 0.3, 1) || 1})`, transformOrigin: 'center' }}>
+      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 'clamp(8px, 2vw, 28px)', height: 'clamp(80px, 14vw, 200px)', transform: 'scale(0.65)', transformOrigin: 'center' }}>
         <SlitDigit inP={inP} accent={accent} warm={warm} />
         <SlitDigit inP={inP} accent={accent} warm={warm} stagger={0.25} />
       </div>

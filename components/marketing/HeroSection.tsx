@@ -42,8 +42,8 @@ export function HeroSection() {
         <FrequencyAnimation />
       </div>
 
-      {/* Gradient so text reads over the animation */}
-      <div style={{ position: 'absolute', inset: 0, zIndex: 1, background: 'linear-gradient(to top, rgba(3,3,2,0.92) 0%, rgba(3,3,2,0.4) 35%, rgba(3,3,2,0.05) 70%, transparent 100%)' }} />
+      {/* Strong gradient: bottom half solid → animation visible top 50% only */}
+      <div style={{ position: 'absolute', inset: 0, zIndex: 1, background: 'linear-gradient(to top, rgba(3,3,2,1) 0%, rgba(3,3,2,0.97) 28%, rgba(3,3,2,0.7) 45%, rgba(3,3,2,0.2) 62%, transparent 80%)' }} />
 
       {/* Hero content — bottom-left editorial, on top of animation */}
       <motion.div style={{ y, opacity, position: 'relative', zIndex: 2, maxWidth: '1300px', width: '100%', margin: '0 auto' }}>
