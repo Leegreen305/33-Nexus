@@ -4,344 +4,89 @@ import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
 import Link from 'next/link'
 
-const PHASES_PREVIEW = [
-  { num: 1, name: 'DISCOVERY', status: 'complete' },
-  { num: 2, name: 'ARCHITECTURE', status: 'complete' },
-  { num: 3, name: 'PROPOSAL SIGNED', status: 'complete' },
-  { num: 4, name: 'DEVELOPMENT', status: 'in-progress' },
-  { num: 5, name: 'QUALITY ASSURANCE', status: 'pending' },
-  { num: 6, name: 'CLIENT REVIEW', status: 'pending' },
-  { num: 7, name: 'LAUNCH', status: 'pending' },
-  { num: 8, name: 'SUPPORT ACTIVE', status: 'pending' },
+const PHASES = [
+  { n: 1, name: 'Discovery', done: true },
+  { n: 2, name: 'Architecture', done: true },
+  { n: 3, name: 'Proposal', done: true },
+  { n: 4, name: 'Development', active: true },
+  { n: 5, name: 'QA', done: false },
+  { n: 6, name: 'Review', done: false },
+  { n: 7, name: 'Launch', done: false },
+  { n: 8, name: 'Support', done: false },
 ]
 
 export function PortalPreviewSection() {
-  const ref = useRef<HTMLDivElement>(null)
+  const ref = useRef<HTMLElement>(null)
   const isInView = useInView(ref, { once: true, margin: '-10%' })
 
   return (
-    <section id="portal-preview" ref={ref} className="relative py-40 px-6 overflow-hidden">
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background: 'radial-gradient(ellipse at 66% 50%, rgba(0,212,255,0.02) 0%, transparent 60%)',
-        }}
-      />
+    <section ref={ref} style={{ padding: 'clamp(80px, 12vw, 160px) clamp(20px, 4vw, 60px)', maxWidth: '1300px', margin: '0 auto' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: 'clamp(48px, 6vw, 80px)', alignItems: 'center' }}>
 
-      <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          {/* Left — text */}
-          <div>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.66 }}
-              style={{
-                fontFamily: 'JetBrains Mono, monospace',
-                fontSize: '0.66rem',
-                letterSpacing: '0.3em',
-                color: '#00D4FF',
-                textTransform: 'uppercase',
-                marginBottom: '1.5rem',
-              }}
-            >
-              — CLIENT PORTAL
-            </motion.div>
+        {/* Left */}
+        <motion.div initial={{ opacity: 0, x: -20 }} animate={isInView ? { opacity: 1, x: 0 } : {}} transition={{ duration: 0.7 }}>
+          <div className="label" style={{ marginBottom: '16px', color: '#7DF9FF', opacity: 0.8 }}>— Client Portal</div>
+          <h2 className="heading" style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', color: '#fff', marginBottom: '20px' }}>
+            Your project.<br />
+            <span style={{ color: '#7DF9FF' }}>Full visibility.</span>
+          </h2>
+          <p style={{ fontFamily: 'DM Sans, sans-serif', fontSize: '1rem', color: 'rgba(255,255,255,0.4)', lineHeight: 1.75, marginBottom: '32px' }}>
+            Every client gets a dedicated portal — real-time phase tracking, milestones, file center, direct messaging, and invoice history. Nothing is ever a mystery.
+          </p>
+          <Link href="/portal/login" style={{ textDecoration: 'none', cursor: 'none' }}>
+            <button className="btn-ghost">Access Portal →</button>
+          </Link>
+        </motion.div>
 
-            <motion.h2
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.99, delay: 0.1 }}
-              style={{
-                fontFamily: 'Bebas Neue, sans-serif',
-                fontSize: 'clamp(2.2rem, 5vw, 3.3rem)',
-                letterSpacing: '0.05em',
-                color: '#FFFFFF',
-                lineHeight: 1.1,
-                marginBottom: '1.5rem',
-              }}
-            >
-              Your Project.
-              <br />
-              <span style={{ color: '#00D4FF' }}>Full Visibility.</span>
-            </motion.h2>
+        {/* Portal mockup */}
+        <motion.div initial={{ opacity: 0, x: 20 }} animate={isInView ? { opacity: 1, x: 0 } : {}} transition={{ duration: 0.7, delay: 0.15 }}>
+          <div style={{ background: '#0D0D0D', border: '1px solid rgba(255,255,255,0.06)', borderRadius: '20px', overflow: 'hidden', boxShadow: '0 40px 80px rgba(0,0,0,0.6)' }}>
+            {/* Browser bar */}
+            <div style={{ padding: '14px 20px', background: '#111', borderBottom: '1px solid rgba(255,255,255,0.04)', display: 'flex', alignItems: 'center', gap: '8px' }}>
+              {['#FF5F57','#FEBC2E','#28C840'].map(c => <div key={c} style={{ width: '10px', height: '10px', borderRadius: '50%', background: c }} />)}
+              <div style={{ flex: 1, margin: '0 12px', background: 'rgba(255,255,255,0.04)', borderRadius: '6px', padding: '4px 12px', fontFamily: 'JetBrains Mono, monospace', fontSize: '0.6rem', color: 'rgba(255,255,255,0.25)', textAlign: 'center' }}>33nexus.com/portal</div>
+            </div>
 
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.66, delay: 0.2 }}
-              style={{
-                fontFamily: 'DM Sans, sans-serif',
-                fontSize: '1.1rem',
-                color: '#555555',
-                lineHeight: 1.8,
-                marginBottom: '2rem',
-              }}
-            >
-              Every 33 Nexus client receives access to a dedicated project portal with
-              real-time phase tracking, milestone updates, file sharing, and direct
-              communication with the team.
-            </motion.p>
-
-            {/* Feature list */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.66, delay: 0.35 }}
-              className="space-y-3 mb-8"
-            >
-              {[
-                'Real-time phase tracking across all 8 stages',
-                'Milestone updates with chronological feed',
-                'Secure file center organized by phase',
-                'Direct messaging with the 33 Nexus team',
-                'Invoice history and payment status',
-                'Client approval workflows built in',
-              ].map((feature) => (
-                <div key={feature} className="flex items-start gap-3">
-                  <div
-                    style={{
-                      width: '8px',
-                      height: '8px',
-                      borderRadius: '50%',
-                      background: '#00D4FF',
-                      boxShadow: '0 0 8px rgba(0,212,255,0.5)',
-                      flexShrink: 0,
-                      marginTop: '7px',
-                    }}
-                  />
-                  <span
-                    style={{
-                      fontFamily: 'DM Sans, sans-serif',
-                      fontSize: '0.88rem',
-                      color: '#555555',
-                    }}
-                  >
-                    {feature}
-                  </span>
-                </div>
-              ))}
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.66, delay: 0.5 }}
-            >
-              <Link href="/portal/login">
-                <button
-                  style={{
-                    background: 'transparent',
-                    border: '1px solid #00D4FF',
-                    borderRadius: '33px',
-                    padding: '8px 88px',
-                    fontFamily: 'Bebas Neue, sans-serif',
-                    fontSize: '1rem',
-                    letterSpacing: '0.15em',
-                    color: '#00D4FF',
-                    cursor: 'none',
-                    transition: 'all 0.33s ease',
-                  }}
-                  onMouseEnter={(e) => {
-                    const t = e.target as HTMLButtonElement
-                    t.style.background = 'rgba(0,212,255,0.1)'
-                    t.style.boxShadow = '0 0 33px rgba(0,212,255,0.2)'
-                  }}
-                  onMouseLeave={(e) => {
-                    const t = e.target as HTMLButtonElement
-                    t.style.background = 'transparent'
-                    t.style.boxShadow = 'none'
-                  }}
-                >
-                  ENTER PORTAL
-                </button>
-              </Link>
-            </motion.div>
-          </div>
-
-          {/* Right — portal mockup */}
-          <motion.div
-            initial={{ opacity: 0, x: 40 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.99, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-          >
-            <div
-              style={{
-                background: '#080808',
-                border: '1px solid #1A1A1A',
-                borderRadius: '1.1rem',
-                overflow: 'hidden',
-                boxShadow: '0 32px 80px rgba(0,0,0,0.8)',
-              }}
-            >
-              {/* Mockup header */}
-              <div
-                style={{
-                  padding: '1rem 1.5rem',
-                  background: '#0C0C0C',
-                  borderBottom: '1px solid #1A1A1A',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'space-between',
-                }}
-              >
-                <div style={{ display: 'flex', gap: '8px' }}>
-                  {['#ff5f57', '#febc2e', '#28c840'].map((c) => (
-                    <div key={c} style={{ width: '10px', height: '10px', borderRadius: '50%', background: c }} />
-                  ))}
-                </div>
-                <div
-                  style={{
-                    fontFamily: 'JetBrains Mono, monospace',
-                    fontSize: '0.55rem',
-                    color: '#555555',
-                    letterSpacing: '0.1em',
-                  }}
-                >
-                  33nexus.com/portal
-                </div>
-                <div style={{ width: '50px' }} />
+            <div style={{ display: 'flex', height: '360px' }}>
+              {/* Sidebar */}
+              <div style={{ width: '140px', background: '#0A0A0A', borderRight: '1px solid rgba(255,255,255,0.04)', padding: '20px 12px', flexShrink: 0 }}>
+                <div style={{ fontFamily: 'Syne, sans-serif', fontWeight: 800, fontSize: '0.7rem', color: '#7DF9FF', marginBottom: '20px', letterSpacing: '0.05em' }}>33 NEXUS</div>
+                {['Dashboard','Phases','Files','Messages','Invoices'].map((item, i) => (
+                  <div key={item} style={{ padding: '7px 10px', borderRadius: '8px', background: i === 0 ? 'rgba(125,249,255,0.08)' : 'transparent', fontFamily: 'DM Sans, sans-serif', fontSize: '0.72rem', color: i === 0 ? '#7DF9FF' : 'rgba(255,255,255,0.3)', marginBottom: '3px' }}>
+                    {item}
+                  </div>
+                ))}
               </div>
 
-              <div style={{ display: 'flex', height: '400px' }}>
-                {/* Sidebar mockup */}
-                <div
-                  style={{
-                    width: '160px',
-                    background: '#080808',
-                    borderRight: '1px solid #1A1A1A',
-                    padding: '1.5rem 1rem',
-                    flexShrink: 0,
-                  }}
-                >
-                  <div
-                    style={{
-                      fontFamily: 'Bebas Neue, sans-serif',
-                      fontSize: '0.88rem',
-                      letterSpacing: '0.1em',
-                      color: '#D4D4D4',
-                      marginBottom: '1.5rem',
-                    }}
-                  >
-                    33 NEXUS
-                  </div>
-                  {['Dashboard', 'Phases', 'Milestones', 'Files', 'Messages', 'Invoices'].map((item, i) => (
-                    <div
-                      key={item}
-                      style={{
-                        fontFamily: 'DM Sans, sans-serif',
-                        fontSize: '0.77rem',
-                        color: i === 0 ? '#D4D4D4' : '#555555',
-                        padding: '0.5rem 0.66rem',
-                        borderRadius: '0.44rem',
-                        background: i === 0 ? 'rgba(212,212,212,0.08)' : 'transparent',
-                        marginBottom: '4px',
-                      }}
-                    >
-                      {item}
+              {/* Content */}
+              <div style={{ flex: 1, padding: '20px', overflowY: 'auto' }}>
+                <div style={{ fontFamily: 'Syne, sans-serif', fontWeight: 700, fontSize: '0.9rem', color: '#fff', marginBottom: '4px' }}>Enterprise Platform Build</div>
+                <div className="label" style={{ marginBottom: '20px' }}>Phase 4 of 8 — Development</div>
+
+                {/* Progress bar */}
+                <div style={{ height: '3px', background: 'rgba(255,255,255,0.06)', borderRadius: '2px', marginBottom: '20px', overflow: 'hidden' }}>
+                  <div style={{ width: '50%', height: '100%', background: 'linear-gradient(90deg, #7DF9FF, #BF5AF2)', borderRadius: '2px' }} />
+                </div>
+
+                {/* Phases */}
+                {PHASES.map(p => (
+                  <div key={p.n} style={{ display: 'flex', alignItems: 'center', gap: '10px', padding: '7px 0', borderBottom: '1px solid rgba(255,255,255,0.03)' }}>
+                    <div style={{
+                      width: '8px', height: '8px', borderRadius: '50%', flexShrink: 0,
+                      background: p.done ? '#7DF9FF' : (p as { active?: boolean }).active ? '#BF5AF2' : 'rgba(255,255,255,0.08)',
+                      boxShadow: p.done ? '0 0 6px rgba(125,249,255,0.5)' : (p as { active?: boolean }).active ? '0 0 6px rgba(191,90,242,0.5)' : 'none',
+                      animation: (p as { active?: boolean }).active ? 'pulse-dot 2s infinite' : 'none',
+                    }} />
+                    <div style={{ fontFamily: 'DM Sans, sans-serif', fontSize: '0.72rem', color: p.done ? 'rgba(255,255,255,0.7)' : (p as { active?: boolean }).active ? '#BF5AF2' : 'rgba(255,255,255,0.2)' }}>
+                      {p.name}
                     </div>
-                  ))}
-                </div>
-
-                {/* Main content mockup */}
-                <div style={{ flex: 1, padding: '1.5rem', overflowY: 'auto' }}>
-                  <div
-                    style={{
-                      fontFamily: 'JetBrains Mono, monospace',
-                      fontSize: '0.55rem',
-                      color: '#555555',
-                      letterSpacing: '0.2em',
-                      marginBottom: '8px',
-                    }}
-                  >
-                    PROJECT STATUS
+                    {p.done && <svg width="10" height="10" viewBox="0 0 10 10" fill="none" style={{ marginLeft: 'auto' }}><polyline points="1,5 3.5,7.5 9,2" stroke="#7DF9FF" strokeWidth="1.5" strokeLinecap="round" /></svg>}
                   </div>
-                  <div
-                    style={{
-                      fontFamily: 'Bebas Neue, sans-serif',
-                      fontSize: '1.32rem',
-                      color: '#FFFFFF',
-                      marginBottom: '1.5rem',
-                    }}
-                  >
-                    Enterprise Platform Build
-                  </div>
-
-                  {/* Phase tracker */}
-                  <div className="space-y-2">
-                    {PHASES_PREVIEW.map((phase) => (
-                      <div
-                        key={phase.num}
-                        style={{
-                          display: 'flex',
-                          alignItems: 'center',
-                          gap: '10px',
-                          padding: '0.5rem 0.75rem',
-                          background: phase.status === 'in-progress' ? 'rgba(0,212,255,0.05)' : 'transparent',
-                          borderRadius: '0.44rem',
-                          border: phase.status === 'in-progress' ? '1px solid rgba(0,212,255,0.15)' : '1px solid transparent',
-                        }}
-                      >
-                        <div
-                          className="phase-indicator"
-                          style={{
-                            width: '8px',
-                            height: '8px',
-                            borderRadius: '50%',
-                            background:
-                              phase.status === 'complete'
-                                ? '#D4D4D4'
-                                : phase.status === 'in-progress'
-                                ? '#00D4FF'
-                                : '#1A1A1A',
-                            boxShadow:
-                              phase.status === 'complete'
-                                ? '0 0 8px rgba(212,212,212,0.5)'
-                                : phase.status === 'in-progress'
-                                ? '0 0 8px rgba(0,212,255,0.5)'
-                                : 'none',
-                            animation: phase.status === 'in-progress' ? 'pulse-indicator 1.32s infinite' : 'none',
-                            flexShrink: 0,
-                          }}
-                        />
-                        <div
-                          style={{
-                            fontFamily: 'DM Sans, sans-serif',
-                            fontSize: '0.66rem',
-                            color:
-                              phase.status === 'complete'
-                                ? '#FFFFFF'
-                                : phase.status === 'in-progress'
-                                ? '#00D4FF'
-                                : '#555555',
-                          }}
-                        >
-                          {phase.name}
-                        </div>
-                        {phase.status === 'complete' && (
-                          <svg
-                            width="10"
-                            height="10"
-                            viewBox="0 0 10 10"
-                            fill="none"
-                            style={{ marginLeft: 'auto' }}
-                          >
-                            <polyline
-                              points="2,5 4,7 8,3"
-                              stroke="#D4D4D4"
-                              strokeWidth="1.5"
-                              strokeLinecap="round"
-                            />
-                          </svg>
-                        )}
-                      </div>
-                    ))}
-                  </div>
-                </div>
+                ))}
               </div>
             </div>
-          </motion.div>
-        </div>
+          </div>
+        </motion.div>
       </div>
     </section>
   )

@@ -76,8 +76,8 @@ export function ConstellationBackground() {
       type: 'ambient' as const,
     }))
 
-    const GOLD = '#D4D4D4'
-    const GOLD_DIM = 'rgba(212,212,212,0.3)'
+    const GOLD = '#7DF9FF'
+    const GOLD_DIM = 'rgba(125,249,255,0.3)'
     const GOLD_ELECTRIC = 'rgba(0,212,255,0.15)'
 
     let time = 0
@@ -106,7 +106,7 @@ export function ConstellationBackground() {
 
         ctx.beginPath()
         ctx.arc(px, py, size, 0, Math.PI * 2)
-        ctx.fillStyle = `rgba(212,212,212,${p.opacity * 0.5})`
+        ctx.fillStyle = `rgba(125,249,255,${p.opacity * 0.5})`
         ctx.fill()
       })
 
@@ -137,7 +137,7 @@ export function ConstellationBackground() {
             ctx.beginPath()
             ctx.moveTo(stars[i].x, stars[i].y)
             ctx.lineTo(stars[j].x, stars[j].y)
-            ctx.strokeStyle = `rgba(212,212,212,${opacity})`
+            ctx.strokeStyle = `rgba(125,249,255,${opacity})`
             ctx.lineWidth = 0.5
             ctx.stroke()
           }
@@ -154,8 +154,8 @@ export function ConstellationBackground() {
           star.x, star.y, 0,
           star.x, star.y, pulseSize * 8
         )
-        gradient.addColorStop(0, `rgba(212,212,212,${pulseOpacity * 0.6})`)
-        gradient.addColorStop(1, 'rgba(212,212,212,0)')
+        gradient.addColorStop(0, `rgba(125,249,255,${pulseOpacity * 0.6})`)
+        gradient.addColorStop(1, 'rgba(125,249,255,0)')
         ctx.beginPath()
         ctx.arc(star.x, star.y, pulseSize * 8, 0, Math.PI * 2)
         ctx.fillStyle = gradient
@@ -165,8 +165,8 @@ export function ConstellationBackground() {
         ctx.beginPath()
         ctx.arc(star.x, star.y, pulseSize, 0, Math.PI * 2)
         ctx.fillStyle = index % 3 === 0
-          ? `rgba(232,201,122,${pulseOpacity})`
-          : `rgba(212,212,212,${pulseOpacity})`
+          ? `rgba(191,90,242,${pulseOpacity})`
+          : `rgba(125,249,255,${pulseOpacity})`
         ctx.fill()
 
         // Some stars have cross-hair
@@ -176,7 +176,7 @@ export function ConstellationBackground() {
           ctx.lineTo(star.x + pulseSize * 4, star.y)
           ctx.moveTo(star.x, star.y - pulseSize * 4)
           ctx.lineTo(star.x, star.y + pulseSize * 4)
-          ctx.strokeStyle = `rgba(212,212,212,${pulseOpacity * 0.4})`
+          ctx.strokeStyle = `rgba(125,249,255,${pulseOpacity * 0.4})`
           ctx.lineWidth = 0.5
           ctx.stroke()
         }

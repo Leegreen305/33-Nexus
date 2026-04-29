@@ -1,7 +1,7 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
-import { motion, useScroll, useTransform } from 'framer-motion'
+import { useRef, useEffect, useState } from 'react'
+import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion'
 import dynamic from 'next/dynamic'
 
 const ConstellationBackground = dynamic(
@@ -9,290 +9,141 @@ const ConstellationBackground = dynamic(
   { ssr: false }
 )
 
-const STATS = [
-  { value: '88+', label: 'Projects Delivered' },
-  { value: '888+', label: 'Hours of Engineering' },
-  { value: '33+', label: 'Enterprise Clients' },
-]
-
-// 33-word tagline (precisely counted):
-// "Where intelligence converges with craft. Elite systems built for the demands of tomorrow.
-// Secure. Scalable. Extraordinary. Engineered to the 33rd degree of absolute precision."
-const TAGLINE =
-  'Where intelligence converges with craft. Elite systems built for the demands of tomorrow. Secure. Scalable. Extraordinary. Engineered to the 33rd degree of absolute precision.'
-
-function CountUpNumber({ target, suffix = '' }: { target: number; suffix?: string }) {
-  const [count, setCount] = useState(0)
-  const ref = useRef<HTMLSpanElement>(null)
-  const started = useRef(false)
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && !started.current) {
-          started.current = true
-          const duration = 1320
-          const steps = 33
-          const increment = target / steps
-          let current = 0
-          const timer = setInterval(() => {
-            current += increment
-            if (current >= target) {
-              setCount(target)
-              clearInterval(timer)
-            } else {
-              setCount(Math.floor(current))
-            }
-          }, duration / steps)
-        }
-      },
-      { threshold: 0.5 }
-    )
-
-    if (ref.current) observer.observe(ref.current)
-    return () => observer.disconnect()
-  }, [target])
-
-  return (
-    <span ref={ref}>
-      {count}
-      {suffix}
-    </span>
-  )
-}
+const WORDS = ['INTELLIGENT', 'IMPENETRABLE', 'INEVITABLE']
 
 export function HeroSection() {
-  const containerRef = useRef<HTMLDivElement>(null)
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ['start start', 'end start'],
-  })
+  const ref = useRef<HTMLElement>(null)
+  const [wordIndex, setWordIndex] = useState(0)
+  const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] })
+  const y = useTransform(scrollYProgress, [0, 1], ['0%', '25%'])
+  const opacity = useTransform(scrollYProgress, [0, 0.7], [1, 0])
 
-  const y = useTransform(scrollYProgress, [0, 1], ['0%', '30%'])
-  const opacity = useTransform(scrollYProgress, [0, 0.6], [1, 0])
+  useEffect(() => {
+    const t = setInterval(() => setWordIndex(i => (i + 1) % WORDS.length), 2200)
+    return () => clearInterval(t)
+  }, [])
 
   return (
-    <section
-      ref={containerRef}
-      id="hero"
-      className="relative flex flex-col items-center justify-center overflow-hidden"
-      style={{ height: '88vh', minHeight: '700px' }}
-    >
-      {/* Three.js Constellation Background */}
-      <div className="absolute inset-0">
+    <section ref={ref} id="hero" style={{ position: 'relative', height: '100vh', minHeight: '700px', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
+
+      {/* Constellation BG */}
+      <div style={{ position: 'absolute', inset: 0, opacity: 0.6 }}>
         <ConstellationBackground />
       </div>
 
-      {/* Radial gradient overlay */}
-      <div
-        className="absolute inset-0"
-        style={{
-          background:
-            'radial-gradient(ellipse at 50% 50%, rgba(8,8,8,0) 0%, rgba(8,8,8,0.4) 50%, rgba(8,8,8,0.8) 100%)',
-        }}
-      />
+      {/* Gradient orbs */}
+      <div className="orb" style={{ width: '600px', height: '600px', background: 'radial-gradient(circle, rgba(125,249,255,0.08) 0%, transparent 70%)', top: '10%', left: '-10%' }} />
+      <div className="orb" style={{ width: '500px', height: '500px', background: 'radial-gradient(circle, rgba(191,90,242,0.08) 0%, transparent 70%)', bottom: '10%', right: '-5%' }} />
 
-      {/* Bottom gradient fade */}
-      <div
-        className="absolute bottom-0 left-0 right-0"
-        style={{
-          height: '33%',
-          background: 'linear-gradient(to top, #080808, transparent)',
-        }}
-      />
+      {/* Vignette */}
+      <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(ellipse at center, transparent 30%, rgba(0,0,0,0.7) 100%)' }} />
+      <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '40%', background: 'linear-gradient(to top, #000, transparent)' }} />
 
-      {/* Main content with parallax */}
-      <motion.div
-        style={{ y, opacity }}
-        className="relative z-33 flex flex-col items-center text-center px-6 max-w-6xl mx-auto"
-      >
-        {/* Badge */}
+      {/* Content */}
+      <motion.div style={{ y, opacity, position: 'relative', zIndex: 10, textAlign: 'center', padding: '0 24px', maxWidth: '1100px', width: '100%' }}>
+
+        {/* Status pill */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.66, delay: 0.33 }}
-          className="flex items-center gap-3 mb-8"
+          transition={{ duration: 0.6, delay: 0.2 }}
+          style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', marginBottom: '40px' }}
         >
-          <div
-            style={{
-              width: '33px',
-              height: '1px',
-              background: 'linear-gradient(90deg, transparent, #D4D4D4)',
-            }}
-          />
-          <span
-            style={{
-              fontFamily: 'JetBrains Mono, monospace',
-              fontSize: '0.66rem',
-              letterSpacing: '0.3em',
-              color: '#D4D4D4',
-              textTransform: 'uppercase',
-            }}
-          >
-            33 NEXUS — EST. 888
-          </span>
-          <div
-            style={{
-              width: '33px',
-              height: '1px',
-              background: 'linear-gradient(90deg, #D4D4D4, transparent)',
-            }}
-          />
+          <div style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#7DF9FF', boxShadow: '0 0 10px #7DF9FF', animation: 'pulse-dot 2s infinite' }} />
+          <span className="label" style={{ color: 'rgba(255,255,255,0.5)' }}>Available for new projects</span>
         </motion.div>
 
         {/* Main headline */}
-        <motion.h1
-          initial={{ opacity: 0, y: 40 }}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.99, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
-          style={{
-            fontFamily: 'Bebas Neue, sans-serif',
-            fontSize: 'clamp(3.3rem, 9vw, 9.9rem)',
-            lineHeight: '0.95',
-            letterSpacing: '-0.02em',
-            color: '#FFFFFF',
-            marginBottom: '0.5rem',
-          }}
+          transition={{ duration: 0.8, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
         >
-          WHERE
-          <br />
-          <span className="text-gold-gradient">INTELLIGENCE</span>
-          <br />
-          CONVERGES
-        </motion.h1>
+          <h1 className="display" style={{ fontSize: 'clamp(52px, 9vw, 120px)', color: '#fff', marginBottom: '0' }}>
+            Technology
+            <br />
+            Built to Be
+            <br />
+            <span style={{ display: 'inline-flex', alignItems: 'center', height: '1.1em', overflow: 'hidden' }}>
+              <AnimatePresence mode="wait">
+                <motion.span
+                  key={wordIndex}
+                  initial={{ y: '100%', opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  exit={{ y: '-100%', opacity: 0 }}
+                  transition={{ duration: 0.4, ease: [0.76, 0, 0.24, 1] }}
+                  className="grad-text"
+                  style={{ display: 'block' }}
+                >
+                  {WORDS[wordIndex]}
+                </motion.span>
+              </AnimatePresence>
+            </span>
+          </h1>
+        </motion.div>
 
-        {/* Sub-headline */}
+        {/* Sub */}
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.66, delay: 0.88 }}
+          transition={{ duration: 0.6, delay: 0.6 }}
           style={{
-            fontFamily: 'Cormorant Garamond, serif',
-            fontSize: 'clamp(1.1rem, 2vw, 1.65rem)',
-            fontStyle: 'italic',
-            color: '#555555',
-            marginTop: '1.5rem',
-            maxWidth: '600px',
-            lineHeight: 1.4,
+            fontFamily: 'DM Sans, sans-serif', fontSize: 'clamp(1rem, 1.5vw, 1.2rem)',
+            color: 'rgba(255,255,255,0.45)', maxWidth: '560px', margin: '28px auto 0',
+            lineHeight: 1.7, fontStyle: 'italic',
           }}
         >
-          Elite Software. Impenetrable Security. Infinite Possibility.
-        </motion.p>
-
-        {/* Tagline — 33 words */}
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.66, delay: 1.1 }}
-          style={{
-            fontFamily: 'DM Sans, sans-serif',
-            fontSize: '0.88rem',
-            color: '#555555',
-            maxWidth: '520px',
-            lineHeight: 1.7,
-            marginTop: '1rem',
-          }}
-        >
-          {TAGLINE}
+          Elite software engineering, AI systems, and cybersecurity — delivered by a team that operates at the highest possible frequency.
         </motion.p>
 
         {/* CTAs */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.66, delay: 1.32 }}
-          className="flex flex-col sm:flex-row items-center gap-4 mt-10"
+          transition={{ duration: 0.6, delay: 0.8 }}
+          style={{ display: 'flex', gap: '12px', justifyContent: 'center', marginTop: '48px', flexWrap: 'wrap' }}
         >
-          <a href="#contact">
-            <button className="btn-gold font-heading tracking-widest">
-              BEGIN YOUR PROJECT
-            </button>
-          </a>
-          <a href="/portal/login">
-            <button className="btn-outline font-heading tracking-widest">
-              ENTER CLIENT PORTAL
-            </button>
-          </a>
+          <button className="btn-accent" onClick={() => document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' })}>
+            Start Your Project
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M8 3l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
+          </button>
+          <button className="btn-ghost" onClick={() => document.querySelector('#services')?.scrollIntoView({ behavior: 'smooth' })}>
+            View Services
+          </button>
         </motion.div>
 
-        {/* Stats bar */}
+        {/* Stats */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.66, delay: 1.65 }}
-          className="flex items-center gap-0 mt-16"
-          style={{
-            background: 'rgba(13,13,13,0.6)',
-            backdropFilter: 'blur(20px)',
-            border: '1px solid rgba(31,31,31,0.8)',
-            borderRadius: '1.1rem',
-            overflow: 'hidden',
-          }}
+          transition={{ duration: 0.6, delay: 1.0 }}
+          style={{ display: 'flex', justifyContent: 'center', gap: '48px', marginTop: '72px', flexWrap: 'wrap' }}
         >
-          {STATS.map((stat, i) => (
-            <div
-              key={stat.label}
-              className="flex flex-col items-center justify-center px-8 py-5"
-              style={{
-                borderRight: i < STATS.length - 1 ? '1px solid #1A1A1A' : 'none',
-                minWidth: '160px',
-              }}
-            >
-              <span
-                style={{
-                  fontFamily: 'Bebas Neue, sans-serif',
-                  fontSize: '2.2rem',
-                  color: '#D4D4D4',
-                  lineHeight: 1,
-                  letterSpacing: '0.05em',
-                }}
-              >
-                {stat.value}
-              </span>
-              <span
-                style={{
-                  fontFamily: 'DM Sans, sans-serif',
-                  fontSize: '0.66rem',
-                  color: '#555555',
-                  letterSpacing: '0.15em',
-                  textTransform: 'uppercase',
-                  marginTop: '4px',
-                }}
-              >
-                {stat.label}
-              </span>
+          {[
+            { n: '88+', l: 'Projects delivered' },
+            { n: '888+', l: 'Engineering hours' },
+            { n: '33+', l: 'Enterprise clients' },
+            { n: '8+', l: 'Years expertise' },
+          ].map((s) => (
+            <div key={s.l} style={{ textAlign: 'center' }}>
+              <div style={{ fontFamily: 'Syne, sans-serif', fontWeight: 800, fontSize: 'clamp(1.6rem, 3vw, 2.2rem)', color: '#fff', letterSpacing: '-0.03em', lineHeight: 1 }}>
+                {s.n}
+              </div>
+              <div className="label" style={{ marginTop: '6px' }}>{s.l}</div>
             </div>
           ))}
         </motion.div>
       </motion.div>
 
-      {/* Scroll indicator */}
+      {/* Scroll cue */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 0.66, delay: 2 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+        transition={{ delay: 1.5 }}
+        style={{ position: 'absolute', bottom: '32px', left: '50%', transform: 'translateX(-50%)', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}
       >
-        <span
-          style={{
-            fontFamily: 'JetBrains Mono, monospace',
-            fontSize: '0.55rem',
-            letterSpacing: '0.25em',
-            color: '#555555',
-            textTransform: 'uppercase',
-          }}
-        >
-          SCROLL
-        </span>
-        <motion.div
-          animate={{ y: [0, 8, 0] }}
-          transition={{ duration: 1.32, repeat: Infinity, ease: 'easeInOut' }}
-          style={{
-            width: '1px',
-            height: '40px',
-            background: 'linear-gradient(to bottom, #D4D4D4, transparent)',
-          }}
-        />
+        <motion.div animate={{ y: [0, 8, 0] }} transition={{ duration: 1.5, repeat: Infinity }}
+          style={{ width: '1px', height: '48px', background: 'linear-gradient(to bottom, rgba(255,255,255,0.3), transparent)' }} />
       </motion.div>
     </section>
   )

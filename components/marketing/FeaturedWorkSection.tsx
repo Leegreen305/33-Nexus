@@ -6,388 +6,127 @@ import { motion, useInView } from 'framer-motion'
 const WORKS = [
   {
     title: 'CNSVCS.COM',
-    category: 'Web Platform — AI-Driven',
-    description:
-      'A fully custom web platform delivered for a professional services client. Complex AI architecture, premium design system, enterprise-grade performance and security.',
-    tags: ['Next.js', 'AI Integration', 'Custom Architecture'],
-    status: 'live',
+    type: 'Live Product',
+    category: 'Web Platform · AI-Driven',
+    desc: 'A fully custom web platform for a professional services client. Complex AI architecture, premium design, enterprise-grade security and performance.',
+    tags: ['Next.js', 'AI Integration', 'Custom Architecture', 'Enterprise Security'],
+    accent: '#7DF9FF',
+    live: true,
     url: 'https://cnsvcs.com',
-    featured: true,
   },
   {
-    title: 'ENTERPRISE AI PLATFORM',
+    title: 'Enterprise AI Platform',
+    type: 'NDA Protected',
     category: 'Custom AI Development',
-    description:
-      'End-to-end AI automation platform integrating LLM orchestration, custom agent frameworks, and real-time data pipelines. NDA protected.',
-    tags: ['AI Agents', 'LLM', 'Automation'],
-    status: 'nda',
+    desc: 'End-to-end AI automation platform with LLM orchestration, custom agent frameworks, and real-time data pipelines at enterprise scale.',
+    tags: ['AI Agents', 'LLMs', 'Automation', 'Pipeline'],
+    accent: '#BF5AF2',
+    live: false,
     url: null,
-    featured: false,
   },
   {
-    title: 'SECURITY OPERATIONS CENTER',
+    title: 'Security Operations Center',
+    type: 'NDA Protected',
     category: 'Cybersecurity',
-    description:
-      'Full SOC buildout with custom threat detection, incident response workflows, and real-time security monitoring dashboards. NDA protected.',
-    tags: ['SOC', 'Threat Detection', 'Security'],
-    status: 'nda',
+    desc: 'Full SOC buildout with custom threat detection, incident response workflows, and real-time security monitoring infrastructure.',
+    tags: ['SOC', 'Threat Detection', 'Incident Response'],
+    accent: '#7DF9FF',
+    live: false,
     url: null,
-    featured: false,
   },
 ]
 
 export function FeaturedWorkSection() {
-  const ref = useRef<HTMLDivElement>(null)
+  const ref = useRef<HTMLElement>(null)
   const isInView = useInView(ref, { once: true, margin: '-5%' })
 
   return (
-    <section id="work" ref={ref} className="relative py-40 px-6 overflow-hidden">
-      <div className="section-divider mb-0" />
+    <section id="work" ref={ref} style={{ padding: 'clamp(80px, 12vw, 160px) clamp(20px, 4vw, 60px)', maxWidth: '1300px', margin: '0 auto' }}>
 
-      <div className="max-w-7xl mx-auto">
-        {/* Header */}
-        <div className="flex items-end justify-between mb-16 flex-wrap gap-8">
-          <div>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.66 }}
-              style={{
-                fontFamily: 'JetBrains Mono, monospace',
-                fontSize: '0.66rem',
-                letterSpacing: '0.3em',
-                color: '#D4D4D4',
-                textTransform: 'uppercase',
-                marginBottom: '1rem',
-              }}
-            >
-              — SELECTED WORKS
-            </motion.div>
-
-            <motion.h2
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.99, delay: 0.1 }}
-              style={{
-                fontFamily: 'Bebas Neue, sans-serif',
-                fontSize: 'clamp(2.2rem, 5vw, 3.3rem)',
-                letterSpacing: '0.05em',
-                color: '#FFFFFF',
-              }}
-            >
-              Built. Delivered.{' '}
-              <span className="text-gold-gradient">Proven.</span>
-            </motion.h2>
-          </div>
-
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.66, delay: 0.2 }}
-            style={{
-              fontFamily: 'Cormorant Garamond, serif',
-              fontSize: '1.1rem',
-              fontStyle: 'italic',
-              color: '#555555',
-              maxWidth: '300px',
-            }}
-          >
-            Complex AI-driven platforms available — contact for case studies.
-          </motion.p>
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={isInView ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: 0.6 }}
+        style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '60px', flexWrap: 'wrap', gap: '24px' }}
+      >
+        <div>
+          <div className="label" style={{ marginBottom: '16px' }}>— Selected work</div>
+          <h2 className="heading" style={{ fontSize: 'clamp(2rem, 5vw, 3.5rem)', color: '#fff' }}>
+            Built. Delivered.<br />
+            <span className="grad-text">Proven.</span>
+          </h2>
         </div>
+        <p style={{ fontFamily: 'DM Sans, sans-serif', fontSize: '0.9rem', color: 'rgba(255,255,255,0.3)', maxWidth: '280px', lineHeight: 1.7 }}>
+          Most work is under NDA. Contact us to discuss relevant case studies for your industry.
+        </p>
+      </motion.div>
 
-        {/* Works */}
-        <div className="space-y-8">
-          {/* Featured work — CNSVCS */}
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+        {WORKS.map((w, i) => (
           <motion.div
-            initial={{ opacity: 0, y: 40 }}
+            key={w.title}
+            initial={{ opacity: 0, y: 24 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.99, ease: [0.16, 1, 0.3, 1] }}
-            whileHover={{ borderColor: 'rgba(212,212,212,0.4)' }}
+            transition={{ duration: 0.5, delay: i * 0.1 }}
             style={{
-              background: '#080808',
-              border: '1px solid #1A1A1A',
-              borderRadius: '1.1rem',
-              padding: '3rem',
-              transition: 'border-color 0.33s ease, box-shadow 0.33s ease',
+              background: '#0D0D0D',
+              border: '1px solid rgba(255,255,255,0.06)',
+              borderRadius: '20px',
+              padding: 'clamp(28px, 4vw, 48px)',
               cursor: 'none',
+              transition: 'border-color 0.25s, background 0.25s',
+              position: 'relative', overflow: 'hidden',
             }}
-            onMouseEnter={(e) => {
-              const t = e.currentTarget
-              t.style.boxShadow = '0 16px 66px rgba(0,0,0,0.8), 0 0 33px rgba(212,212,212,0.1)'
-            }}
-            onMouseLeave={(e) => {
-              const t = e.currentTarget
-              t.style.boxShadow = 'none'
-            }}
+            onMouseEnter={e => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.1)'; e.currentTarget.style.background = '#111' }}
+            onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.06)'; e.currentTarget.style.background = '#0D0D0D' }}
           >
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            {/* Accent orb */}
+            <div style={{ position: 'absolute', top: 0, right: 0, width: '300px', height: '300px', background: `radial-gradient(circle at top right, ${w.accent}08, transparent 70%)`, pointerEvents: 'none' }} />
+
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '32px', alignItems: 'center', position: 'relative', zIndex: 1 }}>
               <div>
-                <div
-                  style={{
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    gap: '8px',
-                    padding: '4px 12px',
-                    background: 'rgba(212,212,212,0.1)',
-                    border: '1px solid rgba(212,212,212,0.2)',
-                    borderRadius: '99px',
-                    marginBottom: '1.5rem',
-                  }}
-                >
-                  <div
-                    style={{
-                      width: '6px',
-                      height: '6px',
-                      borderRadius: '50%',
-                      background: '#D4D4D4',
-                      boxShadow: '0 0 6px rgba(212,212,212,0.8)',
-                    }}
-                  />
-                  <span
-                    style={{
-                      fontFamily: 'JetBrains Mono, monospace',
-                      fontSize: '0.55rem',
-                      letterSpacing: '0.2em',
-                      color: '#D4D4D4',
-                      textTransform: 'uppercase',
-                    }}
-                  >
-                    LIVE
+                {/* Status */}
+                <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', marginBottom: '16px' }}>
+                  {w.live && <div style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#7DF9FF', boxShadow: '0 0 8px #7DF9FF' }} />}
+                  <span className="tag" style={{ borderColor: `${w.accent}25`, color: w.accent, background: `${w.accent}08` }}>
+                    {w.type}
                   </span>
                 </div>
 
-                <h3
-                  style={{
-                    fontFamily: 'Bebas Neue, sans-serif',
-                    fontSize: '3.3rem',
-                    letterSpacing: '0.05em',
-                    color: '#FFFFFF',
-                    lineHeight: 1,
-                    marginBottom: '0.5rem',
-                  }}
-                >
-                  CNSVCS.COM
+                {/* Title */}
+                <h3 style={{ fontFamily: 'Syne, sans-serif', fontWeight: 800, fontSize: 'clamp(1.4rem, 3vw, 2rem)', color: '#fff', letterSpacing: '-0.03em', lineHeight: 1.1, marginBottom: '6px' }}>
+                  {w.title}
                 </h3>
+                <div className="label" style={{ marginBottom: '20px' }}>{w.category}</div>
 
-                <div
-                  style={{
-                    fontFamily: 'JetBrains Mono, monospace',
-                    fontSize: '0.66rem',
-                    letterSpacing: '0.15em',
-                    color: '#D4D4D4',
-                    textTransform: 'uppercase',
-                    marginBottom: '1.5rem',
-                  }}
-                >
-                  Web Platform — AI-Driven Architecture
+                {/* Tags */}
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
+                  {w.tags.map(t => <span key={t} className="tag">{t}</span>)}
                 </div>
-
-                <p
-                  style={{
-                    fontFamily: 'DM Sans, sans-serif',
-                    fontSize: '1rem',
-                    color: '#555555',
-                    lineHeight: 1.8,
-                    marginBottom: '1.5rem',
-                  }}
-                >
-                  A fully custom web platform delivered for a professional services client.
-                  Complex architecture, premium design, enterprise-grade performance.
-                  Complex AI-driven platforms delivered at enterprise grade.
-                </p>
-
-                <div className="flex flex-wrap gap-2 mb-6">
-                  {['Next.js', 'AI Integration', 'Custom CMS', 'Enterprise Security'].map((tag) => (
-                    <span
-                      key={tag}
-                      style={{
-                        fontFamily: 'JetBrains Mono, monospace',
-                        fontSize: '0.55rem',
-                        letterSpacing: '0.1em',
-                        color: '#555555',
-                        padding: '4px 10px',
-                        background: '#0C0C0C',
-                        border: '1px solid #1A1A1A',
-                        borderRadius: '99px',
-                      }}
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-
-                <a
-                  href="https://cnsvcs.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 group"
-                  style={{ cursor: 'none' }}
-                >
-                  <span
-                    style={{
-                      fontFamily: 'Bebas Neue, sans-serif',
-                      fontSize: '0.88rem',
-                      letterSpacing: '0.15em',
-                      color: '#D4D4D4',
-                    }}
-                  >
-                    VISIT SITE
-                  </span>
-                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                    <path d="M3 8H13M13 8L8 3M13 8L8 13" stroke="#D4D4D4" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                </a>
               </div>
 
-              {/* Site preview placeholder */}
-              <div
-                style={{
-                  background: '#0C0C0C',
-                  borderRadius: '0.66rem',
-                  aspectRatio: '16/10',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  border: '1px solid #1A1A1A',
-                  overflow: 'hidden',
-                  position: 'relative',
-                }}
-              >
-                <div
-                  style={{
-                    position: 'absolute',
-                    inset: 0,
-                    background: 'radial-gradient(circle at 50% 40%, rgba(212,212,212,0.06) 0%, transparent 70%)',
-                  }}
-                />
-                <div className="text-center opacity-40">
-                  <div
-                    style={{
-                      fontFamily: 'Bebas Neue, sans-serif',
-                      fontSize: '2.2rem',
-                      color: '#D4D4D4',
-                      letterSpacing: '0.1em',
-                    }}
-                  >
-                    CNSVCS
-                  </div>
-                  <div
-                    style={{
-                      fontFamily: 'JetBrains Mono, monospace',
-                      fontSize: '0.55rem',
-                      color: '#555555',
-                      letterSpacing: '0.15em',
-                    }}
-                  >
-                    cnsvcs.com
-                  </div>
-                </div>
+              <div>
+                <p style={{ fontFamily: 'DM Sans, sans-serif', fontSize: '0.95rem', color: 'rgba(255,255,255,0.4)', lineHeight: 1.75, marginBottom: '24px' }}>
+                  {w.desc}
+                </p>
+
+                {w.url ? (
+                  <a href={w.url} target="_blank" rel="noopener noreferrer" style={{ cursor: 'none', textDecoration: 'none' }}>
+                    <button className="btn-ghost" style={{ padding: '10px 22px', fontSize: '0.82rem' }}>
+                      Visit Site ↗
+                    </button>
+                  </a>
+                ) : (
+                  <button className="btn-ghost" style={{ padding: '10px 22px', fontSize: '0.82rem', opacity: 0.5 }}
+                    onClick={() => document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' })}>
+                    Request Case Study
+                  </button>
+                )}
               </div>
             </div>
           </motion.div>
-
-          {/* NDA Protected works */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {WORKS.filter((w) => w.status === 'nda').map((work, i) => (
-              <motion.div
-                key={work.title}
-                initial={{ opacity: 0, y: 30 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.66, delay: 0.4 + i * 0.1 }}
-                style={{
-                  background: '#080808',
-                  border: '1px solid #1A1A1A',
-                  borderRadius: '1.1rem',
-                  padding: '2rem',
-                  cursor: 'none',
-                  position: 'relative',
-                  overflow: 'hidden',
-                }}
-              >
-                {/* NDA badge */}
-                <div
-                  style={{
-                    position: 'absolute',
-                    top: '1.5rem',
-                    right: '1.5rem',
-                    padding: '4px 10px',
-                    background: 'rgba(139,0,0,0.2)',
-                    border: '1px solid rgba(139,0,0,0.3)',
-                    borderRadius: '99px',
-                    fontFamily: 'JetBrains Mono, monospace',
-                    fontSize: '0.44rem',
-                    letterSpacing: '0.15em',
-                    color: '#8B0000',
-                    textTransform: 'uppercase',
-                  }}
-                >
-                  NDA PROTECTED
-                </div>
-
-                <div
-                  style={{
-                    fontFamily: 'JetBrains Mono, monospace',
-                    fontSize: '0.55rem',
-                    letterSpacing: '0.2em',
-                    color: '#D4D4D4',
-                    textTransform: 'uppercase',
-                    marginBottom: '0.75rem',
-                  }}
-                >
-                  {work.category}
-                </div>
-
-                <h3
-                  style={{
-                    fontFamily: 'Bebas Neue, sans-serif',
-                    fontSize: '1.65rem',
-                    letterSpacing: '0.08em',
-                    color: '#FFFFFF',
-                    marginBottom: '1rem',
-                  }}
-                >
-                  {work.title}
-                </h3>
-
-                <p
-                  style={{
-                    fontFamily: 'DM Sans, sans-serif',
-                    fontSize: '0.88rem',
-                    color: '#555555',
-                    lineHeight: 1.7,
-                    marginBottom: '1.5rem',
-                  }}
-                >
-                  {work.description}
-                </p>
-
-                <div className="flex flex-wrap gap-2">
-                  {work.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      style={{
-                        fontFamily: 'JetBrains Mono, monospace',
-                        fontSize: '0.55rem',
-                        letterSpacing: '0.1em',
-                        color: '#555555',
-                        padding: '4px 10px',
-                        background: '#0C0C0C',
-                        border: '1px solid #1A1A1A',
-                        borderRadius: '99px',
-                      }}
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
+        ))}
       </div>
-
-      <div className="section-divider mt-20" />
     </section>
   )
 }

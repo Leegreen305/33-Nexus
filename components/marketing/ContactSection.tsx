@@ -2,464 +2,135 @@
 
 import { useRef, useState } from 'react'
 import { motion, useInView, AnimatePresence } from 'framer-motion'
-import { SERVICES } from '@/lib/constants'
 
-interface FormData {
-  name: string
-  company: string
-  service: string
-  description: string
-  budget: string
-  timeline: string
-}
-
-const BUDGET_OPTIONS = [
-  'Under $5,000',
-  '$5,000 – $15,000',
-  '$15,000 – $50,000',
-  '$50,000 – $150,000',
-  '$150,000+',
-  'To be discussed',
-]
-
-const TIMELINE_OPTIONS = [
-  'ASAP',
-  '1–3 months',
-  '3–6 months',
-  '6–12 months',
-  '12+ months',
-  'Ongoing / Retainer',
-]
+const SERVICES = ['Software Development', 'Web Development', 'Mobile App Development', 'AI Software Development', 'AI Voice Agents', 'AI Automation', 'Custom AI Agents', 'Cybersecurity Services', 'Multiple / Not Sure']
+const BUDGETS = ['Under $5,000', '$5,000 – $15,000', '$15,000 – $50,000', '$50,000 – $150,000', '$150,000+', 'To be discussed']
+const TIMELINES = ['ASAP', '1–3 months', '3–6 months', '6–12 months', '12+ months', 'Ongoing retainer']
 
 export function ContactSection() {
-  const ref = useRef<HTMLDivElement>(null)
+  const ref = useRef<HTMLElement>(null)
   const isInView = useInView(ref, { once: true, margin: '-5%' })
-
-  const [formData, setFormData] = useState<FormData>({
-    name: '',
-    company: '',
-    service: '',
-    description: '',
-    budget: '',
-    timeline: '',
-  })
-
+  const [form, setForm] = useState({ name: '', company: '', service: '', description: '', budget: '', timeline: '' })
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const update = (k: keyof typeof form, v: string) => setForm(p => ({ ...p, [k]: v }))
+
+  const submit = async (e: React.FormEvent) => {
     e.preventDefault()
     setStatus('loading')
-
     try {
-      const res = await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
-      })
-
-      if (res.ok) {
-        setStatus('success')
-        setFormData({ name: '', company: '', service: '', description: '', budget: '', timeline: '' })
-      } else {
-        setStatus('error')
-      }
-    } catch {
-      setStatus('error')
-    }
-  }
-
-  const updateField = (field: keyof FormData, value: string) => {
-    setFormData((prev) => ({ ...prev, [field]: value }))
+      const r = await fetch('/api/contact', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(form) })
+      setStatus(r.ok ? 'success' : 'error')
+      if (r.ok) setForm({ name: '', company: '', service: '', description: '', budget: '', timeline: '' })
+    } catch { setStatus('error') }
   }
 
   return (
-    <section id="contact" ref={ref} className="relative py-40 px-6 overflow-hidden">
-      {/* Background geometry */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background:
-            'radial-gradient(ellipse at 33% 50%, rgba(212,212,212,0.03) 0%, transparent 60%)',
-        }}
-      />
+    <section id="contact" ref={ref} style={{ padding: 'clamp(80px, 12vw, 160px) clamp(20px, 4vw, 60px)', position: 'relative', overflow: 'hidden' }}>
 
-      <div className="max-w-5xl mx-auto">
-        {/* Header */}
-        <div className="text-center mb-20">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.66 }}
-            style={{
-              fontFamily: 'JetBrains Mono, monospace',
-              fontSize: '0.66rem',
-              letterSpacing: '0.3em',
-              color: '#D4D4D4',
-              textTransform: 'uppercase',
-              marginBottom: '1.5rem',
-            }}
-          >
-            — BEGIN
-          </motion.div>
+      {/* Background gradient */}
+      <div className="orb" style={{ width: '700px', height: '700px', background: 'radial-gradient(circle, rgba(125,249,255,0.04) 0%, transparent 70%)', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', filter: 'blur(60px)' }} />
 
-          <motion.h2
-            initial={{ opacity: 0, y: 30 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.99, delay: 0.1 }}
-            style={{
-              fontFamily: 'Bebas Neue, sans-serif',
-              fontSize: 'clamp(2.2rem, 6vw, 3.3rem)',
-              letterSpacing: '0.05em',
-              color: '#FFFFFF',
-              marginBottom: '1rem',
-            }}
-          >
-            Begin at the{' '}
-            <span className="text-gold-gradient">33rd Degree</span>
-          </motion.h2>
-
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.66, delay: 0.2 }}
-            style={{
-              fontFamily: 'Cormorant Garamond, serif',
-              fontSize: '1.32rem',
-              fontStyle: 'italic',
-              color: '#555555',
-            }}
-          >
-            Every great structure begins with a single conversation.
-          </motion.p>
-
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={isInView ? { opacity: 1 } : {}}
-            transition={{ duration: 0.66, delay: 0.35 }}
-            className="flex items-center justify-center gap-3 mt-6"
-          >
-            <div
-              style={{
-                width: '8px',
-                height: '8px',
-                borderRadius: '50%',
-                background: '#D4D4D4',
-                boxShadow: '0 0 8px rgba(212,212,212,0.6)',
-                animation: 'pulse-indicator 1.32s ease-in-out infinite',
-              }}
-            />
-            <span
-              style={{
-                fontFamily: 'JetBrains Mono, monospace',
-                fontSize: '0.66rem',
-                color: '#555555',
-                letterSpacing: '0.15em',
-              }}
-            >
-              Response within 8 hours
-            </span>
-          </motion.div>
-        </div>
+      <div style={{ maxWidth: '1300px', margin: '0 auto', position: 'relative', zIndex: 1 }}>
+        {/* Header — full-bleed editorial */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          style={{ textAlign: 'center', marginBottom: 'clamp(60px, 8vw, 100px)' }}
+        >
+          <div className="label" style={{ marginBottom: '24px' }}>— Let's build</div>
+          <h2 style={{
+            fontFamily: 'Syne, sans-serif', fontWeight: 800,
+            fontSize: 'clamp(2.5rem, 8vw, 7rem)',
+            color: '#fff', letterSpacing: '-0.04em', lineHeight: 0.95,
+            marginBottom: '24px',
+          }}>
+            Start the
+            <br />
+            <span className="grad-text">Conversation.</span>
+          </h2>
+          <p style={{ fontFamily: 'DM Sans, sans-serif', fontSize: '1rem', color: 'rgba(255,255,255,0.35)', maxWidth: '420px', margin: '0 auto', lineHeight: 1.7 }}>
+            Response within 8 hours. Investment discussed during consultation — never published.
+          </p>
+        </motion.div>
 
         <AnimatePresence mode="wait">
           {status === 'success' ? (
             <motion.div
               key="success"
-              initial={{ opacity: 0, scale: 0.9 }}
+              initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.33 }}
-              className="flex flex-col items-center justify-center py-20 text-center"
+              style={{ textAlign: 'center', padding: '80px 0' }}
             >
-              {/* Gold particle burst */}
-              <motion.div
-                initial={{ scale: 0, opacity: 0 }}
-                animate={{ scale: [0, 2, 1.5], opacity: [0, 0.4, 0] }}
-                transition={{ duration: 0.66 }}
-                style={{
-                  position: 'absolute',
-                  width: '300px',
-                  height: '300px',
-                  background: 'radial-gradient(circle, rgba(212,212,212,0.4) 0%, transparent 70%)',
-                  borderRadius: '50%',
-                }}
-              />
-
-              <div
-                style={{
-                  width: '66px',
-                  height: '66px',
-                  border: '2px solid #D4D4D4',
-                  borderRadius: '50%',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  marginBottom: '2rem',
-                  boxShadow: '0 0 33px rgba(212,212,212,0.3)',
-                }}
-              >
-                <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-                  <polyline
-                    points="5,14 11,20 23,8"
-                    stroke="#D4D4D4"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
+              <div style={{ width: '64px', height: '64px', borderRadius: '50%', background: 'linear-gradient(135deg, #7DF9FF20, #BF5AF220)', border: '1px solid rgba(125,249,255,0.3)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 24px' }}>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12" stroke="#7DF9FF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
               </div>
-
-              <h3
-                style={{
-                  fontFamily: 'Bebas Neue, sans-serif',
-                  fontSize: '2.2rem',
-                  letterSpacing: '0.1em',
-                  color: '#FFFFFF',
-                  marginBottom: '1rem',
-                }}
-              >
-                MESSAGE RECEIVED
-              </h3>
-              <p
-                style={{
-                  fontFamily: 'DM Sans, sans-serif',
-                  fontSize: '1rem',
-                  color: '#555555',
-                  lineHeight: 1.7,
-                  maxWidth: '400px',
-                }}
-              >
-                We&apos;ll review your project and respond within 8 hours.
-                The 33 Nexus method begins with precision — including our response.
-              </p>
+              <h3 style={{ fontFamily: 'Syne, sans-serif', fontWeight: 800, fontSize: '2rem', color: '#fff', marginBottom: '12px', letterSpacing: '-0.03em' }}>Message received.</h3>
+              <p style={{ color: 'rgba(255,255,255,0.4)', fontFamily: 'DM Sans, sans-serif', fontSize: '0.95rem' }}>We'll be in touch within 8 hours.</p>
             </motion.div>
           ) : (
             <motion.form
               key="form"
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 24 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.99, delay: 0.3 }}
-              onSubmit={handleSubmit}
-              style={{
-                background: '#080808',
-                border: '1px solid #1A1A1A',
-                borderRadius: '1.1rem',
-                padding: 'clamp(2rem, 5vw, 4rem)',
-              }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              onSubmit={submit}
+              style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '12px', maxWidth: '900px', margin: '0 auto' }}
             >
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {/* Name */}
-                <div className="space-y-2">
-                  <label
-                    style={{
-                      fontFamily: 'JetBrains Mono, monospace',
-                      fontSize: '0.55rem',
-                      letterSpacing: '0.2em',
-                      color: '#555555',
-                      textTransform: 'uppercase',
-                      display: 'block',
-                    }}
-                  >
-                    Full Name
-                  </label>
-                  <input
-                    type="text"
-                    required
-                    className="nexus-input"
-                    placeholder="Your name"
-                    value={formData.name}
-                    onChange={(e) => updateField('name', e.target.value)}
-                  />
-                </div>
-
-                {/* Company */}
-                <div className="space-y-2">
-                  <label
-                    style={{
-                      fontFamily: 'JetBrains Mono, monospace',
-                      fontSize: '0.55rem',
-                      letterSpacing: '0.2em',
-                      color: '#555555',
-                      textTransform: 'uppercase',
-                      display: 'block',
-                    }}
-                  >
-                    Company (Optional)
-                  </label>
-                  <input
-                    type="text"
-                    className="nexus-input"
-                    placeholder="Your company"
-                    value={formData.company}
-                    onChange={(e) => updateField('company', e.target.value)}
-                  />
-                </div>
-
-                {/* Service */}
-                <div className="space-y-2">
-                  <label
-                    style={{
-                      fontFamily: 'JetBrains Mono, monospace',
-                      fontSize: '0.55rem',
-                      letterSpacing: '0.2em',
-                      color: '#555555',
-                      textTransform: 'uppercase',
-                      display: 'block',
-                    }}
-                  >
-                    Service Needed
-                  </label>
-                  <select
-                    required
-                    className="nexus-input"
-                    value={formData.service}
-                    onChange={(e) => updateField('service', e.target.value)}
-                    style={{ background: '#0C0C0C' }}
-                  >
-                    <option value="">Select a service</option>
-                    {SERVICES.map((s) => (
-                      <option key={s.id} value={s.title}>
-                        {s.title}
-                      </option>
-                    ))}
-                    <option value="Multiple / Not Sure">Multiple / Not Sure</option>
-                  </select>
-                </div>
-
-                {/* Budget */}
-                <div className="space-y-2">
-                  <label
-                    style={{
-                      fontFamily: 'JetBrains Mono, monospace',
-                      fontSize: '0.55rem',
-                      letterSpacing: '0.2em',
-                      color: '#555555',
-                      textTransform: 'uppercase',
-                      display: 'block',
-                    }}
-                  >
-                    Budget Range
-                  </label>
-                  <select
-                    className="nexus-input"
-                    value={formData.budget}
-                    onChange={(e) => updateField('budget', e.target.value)}
-                    style={{ background: '#0C0C0C' }}
-                  >
-                    <option value="">Select a range</option>
-                    {BUDGET_OPTIONS.map((b) => (
-                      <option key={b} value={b}>
-                        {b}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-
-                {/* Timeline */}
-                <div className="space-y-2">
-                  <label
-                    style={{
-                      fontFamily: 'JetBrains Mono, monospace',
-                      fontSize: '0.55rem',
-                      letterSpacing: '0.2em',
-                      color: '#555555',
-                      textTransform: 'uppercase',
-                      display: 'block',
-                    }}
-                  >
-                    Desired Timeline
-                  </label>
-                  <select
-                    className="nexus-input"
-                    value={formData.timeline}
-                    onChange={(e) => updateField('timeline', e.target.value)}
-                    style={{ background: '#0C0C0C' }}
-                  >
-                    <option value="">Select timeline</option>
-                    {TIMELINE_OPTIONS.map((t) => (
-                      <option key={t} value={t}>
-                        {t}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-
-                {/* Description — full width */}
-                <div className="space-y-2 md:col-span-2">
-                  <label
-                    style={{
-                      fontFamily: 'JetBrains Mono, monospace',
-                      fontSize: '0.55rem',
-                      letterSpacing: '0.2em',
-                      color: '#555555',
-                      textTransform: 'uppercase',
-                      display: 'block',
-                    }}
-                  >
-                    Project Description
-                  </label>
-                  <textarea
-                    required
-                    className="nexus-input"
-                    placeholder="Describe your project, goals, and what success looks like to you..."
-                    rows={5}
-                    value={formData.description}
-                    onChange={(e) => updateField('description', e.target.value)}
-                    style={{ resize: 'vertical', minHeight: '120px' }}
-                  />
-                </div>
+              {/* Name */}
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                <label className="label">Name</label>
+                <input className="input" type="text" required placeholder="Your name" value={form.name} onChange={e => update('name', e.target.value)} />
               </div>
 
-              {/* Pricing note */}
-              <div
-                className="flex items-center gap-3 mt-6 mb-8"
-                style={{
-                  padding: '0.88rem 1.1rem',
-                  background: '#0C0C0C',
-                  border: '1px solid #1A1A1A',
-                  borderRadius: '0.66rem',
-                }}
-              >
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                  <circle cx="8" cy="8" r="7" stroke="#555555" strokeWidth="1" />
-                  <line x1="8" y1="6" x2="8" y2="10" stroke="#555555" strokeWidth="1.5" strokeLinecap="round" />
-                  <circle cx="8" cy="4.5" r="0.75" fill="#555555" />
-                </svg>
-                <span
-                  style={{
-                    fontFamily: 'DM Sans, sans-serif',
-                    fontSize: '0.77rem',
-                    color: '#555555',
-                  }}
-                >
-                  Investment is discussed during consultation — no pricing is published. Every engagement is scoped to your specific needs.
-                </span>
+              {/* Company */}
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                <label className="label">Company (optional)</label>
+                <input className="input" type="text" placeholder="Your company" value={form.company} onChange={e => update('company', e.target.value)} />
+              </div>
+
+              {/* Service */}
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                <label className="label">Service needed</label>
+                <select className="input" required value={form.service} onChange={e => update('service', e.target.value)}>
+                  <option value="">Select</option>
+                  {SERVICES.map(s => <option key={s} value={s}>{s}</option>)}
+                </select>
+              </div>
+
+              {/* Budget */}
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                <label className="label">Budget range</label>
+                <select className="input" value={form.budget} onChange={e => update('budget', e.target.value)}>
+                  <option value="">Select</option>
+                  {BUDGETS.map(b => <option key={b} value={b}>{b}</option>)}
+                </select>
+              </div>
+
+              {/* Timeline — full width */}
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', gridColumn: '1 / -1' }}>
+                <label className="label">Timeline</label>
+                <select className="input" value={form.timeline} onChange={e => update('timeline', e.target.value)}>
+                  <option value="">Select</option>
+                  {TIMELINES.map(t => <option key={t} value={t}>{t}</option>)}
+                </select>
+              </div>
+
+              {/* Message — full width */}
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', gridColumn: '1 / -1' }}>
+                <label className="label">Project description</label>
+                <textarea className="input" required placeholder="Tell us about your project, goals, and what success looks like..." value={form.description} onChange={e => update('description', e.target.value)} />
               </div>
 
               {/* Submit */}
-              <div className="flex justify-center">
-                <button
-                  type="submit"
-                  disabled={status === 'loading'}
-                  className="btn-gold"
-                  style={{ opacity: status === 'loading' ? 0.7 : 1 }}
-                >
-                  {status === 'loading' ? 'TRANSMITTING...' : 'SEND MESSAGE'}
+              <div style={{ gridColumn: '1 / -1', display: 'flex', justifyContent: 'center', paddingTop: '8px', gap: '16px', alignItems: 'center' }}>
+                <button type="submit" className="btn-accent" disabled={status === 'loading'} style={{ opacity: status === 'loading' ? 0.6 : 1 }}>
+                  {status === 'loading' ? 'Sending...' : 'Send Message'}
+                  {status !== 'loading' && <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M8 3l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>}
                 </button>
+                {status === 'error' && <span style={{ fontFamily: 'DM Sans, sans-serif', fontSize: '0.85rem', color: '#ff4444' }}>Failed to send. Please try again.</span>}
               </div>
-
-              {status === 'error' && (
-                <p
-                  className="text-center mt-4"
-                  style={{
-                    fontFamily: 'DM Sans, sans-serif',
-                    fontSize: '0.88rem',
-                    color: '#8B0000',
-                  }}
-                >
-                  Something went wrong. Please email us directly.
-                </p>
-              )}
             </motion.form>
           )}
         </AnimatePresence>
